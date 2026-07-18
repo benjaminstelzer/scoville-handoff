@@ -1,0 +1,34 @@
+# Compact Handoff
+
+A small Agent Skill for handing unfinished work to another session without dragging the whole conversation along.
+
+Its output is one copy-ready English Markdown prompt. The prompt keeps the goal, working state, decisions, evidence, blockers, and next safe action together. Before continuing, the receiving agent is told to verify the current sources instead of trusting an old snapshot.
+
+## Install
+
+Use an agent that supports the Agent Skills format: a `SKILL.md` file with name and description frontmatter.
+
+Usually, the simplest option is to send your agent this prompt:
+
+```text
+Install this Agent Skill from GitHub and make it available for my work:
+https://github.com/benjaminstelzer/compact-handoff
+```
+
+Add `for all my projects` or `only for this project` when the installation scope matters. The agent should use its supported skills directory, keep the repository name `compact-handoff`, and refresh its skill list.
+
+For a manual installation, clone or copy the repository so the final path is:
+
+```text
+<skills-dir>/compact-handoff/SKILL.md
+```
+
+Skill directories vary between agents. Check your agent's documentation if it cannot choose the location itself.
+
+## Use
+
+Ask for `compact`, `kompakt`, or a context handoff. The skill returns only a fenced Markdown prompt that is ready to copy into another agent session.
+
+## License
+
+MIT. See [LICENSE](LICENSE).

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Compact Handoff"
+  short_description: "Create a copy-ready agent handoff prompt."
+  default_prompt: "Use $compact-handoff to create a copy-ready English Markdown prompt for continuing this task with another AI agent."
