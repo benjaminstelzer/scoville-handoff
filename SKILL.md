@@ -1,6 +1,6 @@
 ---
 name: compact-handoff
-description: Create a compact, copy-ready English Markdown prompt that transfers active work to any future AI agent. Use when the user asks "compact", "kompakt", "create a compact handoff", "kompakte Übergabe", "context handoff", or asks to preserve the current task state before compaction, restart, or continuation in a new session or agent system.
+description: Create a copy-ready English Markdown prompt that transfers active work to another AI agent or session. Use when the user asks for a "compact handoff", "context handoff", "session handoff", "handoff to a new session", "Übergabe an neue Session", or otherwise explicitly requests a continuation prompt for another agent or session. Do not use for generic requests to shorten, summarize, or reduce context without a handoff.
 ---
 
 # Compact Handoff
@@ -113,6 +113,7 @@ description: Create a compact, copy-ready English Markdown prompt that transfers
 
 ## Trigger Handling
 
-- When the entire user message is only `compact`, `kompakt`, or a close spelling variant, emit only the required Markdown code block.
+- When the user asks for a `compact handoff`, `context handoff`, `session handoff`, `handoff to a new session`, `Übergabe an neue Session`, or a close intent-equivalent phrase, emit only the required Markdown code block.
+- Do not activate for requests that only ask to shorten, summarize, or reduce context without transferring work to another agent or session.
 - When no task work occurred, retain the required shape but use `none known`, `not applicable`, `unknown`, or `not verified` as appropriate.
 - When the task was interrupted, identify exactly what completed, what remained partial, and what may be unsafe or unverified.
