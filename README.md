@@ -27,7 +27,7 @@ Skill directories vary between agents. Check your agent's documentation if it ca
 
 ## Use
 
-Ask for `compact`, `kompakt`, or a context handoff. The skill returns only a fenced Markdown prompt that is ready to copy into another agent session.
+Ask for a `compact handoff`, `context handoff`, `session handoff`, or `Übergabe an neue Session`. The skill returns only a fenced Markdown prompt that is ready to copy into another agent session.
 
 ## License
 
