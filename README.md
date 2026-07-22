@@ -2,7 +2,7 @@
 
 A small Agent Skill for handing unfinished work to another session without dragging the whole conversation along.
 
-Its output is one copy-ready English Markdown prompt. The prompt keeps the goal, working state, decisions, evidence, blockers, and next safe action together. Before continuing, the receiving agent is told to verify the current sources instead of trusting an old snapshot.
+Its output is one copy-ready English Markdown prompt. The prompt keeps the goal, working state, decisions, evidence, blockers, and next safe action together. It also tells the receiving agent not to trust it: a handoff is a claim about the past, and the working tree has had time to disagree. Verify first, then continue.
 
 ## Install
 
@@ -27,7 +27,7 @@ Skill directories vary between agents. Check your agent's documentation if it ca
 
 ## Use
 
-Ask for a `compact handoff`, `context handoff`, `session handoff`, or `Übergabe an neue Session`. The skill returns only a fenced Markdown prompt that is ready to copy into another agent session.
+Ask for a `compact handoff`, `context handoff`, `session handoff`, or `Übergabe an neue Session`. The skill returns the fenced Markdown prompt and nothing else; the output contract does not let it so much as wish the next agent luck.
 
 It complements workflow guardrails such as [Scoville](https://github.com/benjaminstelzer/scoville-anti-ai-coding-slop): their internal handoff rules govern minimal in-place records that survive context compaction, while this skill produces the explicit transfer prompt for handing work to another session.
 
