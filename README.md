@@ -29,6 +29,8 @@ Skill directories vary between agents. Check your agent's documentation if it ca
 
 Ask for a `compact handoff`, `context handoff`, `session handoff`, or `Übergabe an neue Session`. The skill returns only a fenced Markdown prompt that is ready to copy into another agent session.
 
+It complements workflow guardrails such as [Scoville](https://github.com/benjaminstelzer/scoville-anti-ai-coding-slop): their internal handoff rules govern minimal in-place records that survive context compaction, while this skill produces the explicit transfer prompt for handing work to another session.
+
 ## License
 
 MIT. See [LICENSE](LICENSE).
