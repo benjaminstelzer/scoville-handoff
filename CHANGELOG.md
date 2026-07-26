@@ -1,5 +1,22 @@
 # Changelog
 
+## 2026-07-26: Opt-in invocation in Codex
+
+### Added
+
+- `policy.allow_implicit_invocation: false` in `agents/openai.yaml`. Codex then
+  never selects this skill from a matching prompt; `$compact-handoff` still
+  works. The `Activation` section added earlier today asks the model to refuse
+  a self-initiated handoff, which depends on the model complying. This setting
+  removes the decision from the model in Codex. Claude Code has no equivalent
+  field, so both guards are needed.
+
+### Changed
+
+- The Codex `short_description` states the constraint instead of describing an
+  unconditional capability. It was the last surface still presenting the skill
+  as available on its own.
+
 ## 2026-07-26: Explicit activation, usable anchor fields, failed approaches
 
 ### Added

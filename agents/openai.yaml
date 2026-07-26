@@ -1,4 +1,7 @@
 interface:
   display_name: "Compact Handoff"
-  short_description: "Create a copy-ready agent handoff prompt."
+  short_description: "Hand active work to another session, only when you ask for it."
   default_prompt: "Use $compact-handoff to create a copy-ready English Markdown prompt for continuing this task with another AI agent."
+
+policy:
+  allow_implicit_invocation: false
