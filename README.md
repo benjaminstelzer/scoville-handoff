@@ -12,12 +12,13 @@ Usually, the simplest option is to send your agent this prompt:
 
 ```text
 Install this Agent Skill from GitHub and make it available for my work:
-https://github.com/benjaminstelzer/compact-handoff
+https://github.com/benjaminstelzer/compact-handoff/tree/main/compact-handoff
 ```
 
 Add `for all my projects` or `only for this project` when the installation scope matters. The agent should use its supported skills directory, keep the repository name `compact-handoff`, and refresh its skill list.
 
-For a manual installation, clone or copy the repository so the final path is:
+For a manual installation, copy the repository's `compact-handoff/` directory
+so the final path is:
 
 ```text
 <skills-dir>/compact-handoff/SKILL.md
