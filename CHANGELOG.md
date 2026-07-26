@@ -1,5 +1,16 @@
 # Changelog
 
+## 2026-07-26: Installable skill separated from repository documentation
+
+### Changed
+
+- Moved `SKILL.md` and `agents/openai.yaml` into the
+  `compact-handoff/` directory. The installable directory now contains only
+  runtime skill files, while README, changelog, and license remain repository
+  documentation at the root.
+- Updated installation instructions to target the named skill directory. Its
+  parent directory continues to match the frontmatter name.
+
 ## 2026-07-26: Explicit activation, usable anchor fields, failed approaches
 
 ### Added
