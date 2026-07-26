@@ -1,26 +1,5 @@
 # Changelog
 
-## 2026-07-26: Keep implicit invocation, guard self-initiation instead
-
-### Removed
-
-- `policy.allow_implicit_invocation: false`, added hours earlier and wrong. It
-  stops Codex from selecting the skill out of any prompt, including "hand this
-  over to a new session", which is the request the skill exists to serve. The
-  setting cannot tell a user's request from the model's own idea; it blocks
-  both. Asking in plain words works again, and `$compact-handoff` still works
-  as it always did.
-- The constraint belongs where that distinction can be made: the frontmatter
-  description names the phrases that do and do not count, and the `Activation`
-  section refuses a handoff nobody asked for. Both discriminate on who wanted
-  it, which is the actual requirement.
-
-### Changed
-
-- The Codex `short_description` states the constraint instead of describing an
-  unconditional capability. It was the last surface still presenting the skill
-  as available on its own.
-
 ## 2026-07-26: Explicit activation, usable anchor fields, failed approaches
 
 ### Added
@@ -68,6 +47,9 @@
 - `Trigger Handling` became `Edge Cases`. Its first two bullets restated the
   frontmatter description, which cannot affect a decision that has already been
   made by the time the body is read.
+- The Codex `short_description` in `agents/openai.yaml` states the constraint
+  instead of describing an unconditional capability. It was the last surface
+  still presenting the skill as available on its own.
 
 ### Removed
 
