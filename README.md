@@ -29,6 +29,12 @@ Skill directories vary between agents. Check your agent's documentation if it ca
 
 Ask for a `compact handoff`, `context handoff`, `session handoff`, or `Übergabe an neue Session`. The skill returns the fenced Markdown prompt and nothing else; the output contract does not let it so much as wish the next agent luck.
 
+**It only runs when you ask.** The skill never produces a handoff on its own initiative. Low remaining context, a finished task, or an approaching session end are not requests, and a request to shorten or summarize is not one either. If it activates without an explicit handoff request, it says so in one sentence and gets back to work.
+
+It reads version-control state to fill the anchor fields, which is the one thing it does beyond reading the conversation. That inspection is read-only: current branch, HEAD, and working-tree status. Anything it cannot observe is marked `unknown` rather than guessed, and that includes timestamps.
+
+**What it costs.** `SKILL.md` contains 1,282 words, of which 309 are the prompt template. It loads when the skill triggers; exact context accounting depends on the agent.
+
 It complements workflow guardrails such as [Scoville](https://github.com/benjaminstelzer/scoville-anti-ai-coding-slop): their internal handoff rules govern minimal in-place records that survive context compaction, while this skill produces the explicit transfer prompt for handing work to another session.
 
 ## License
