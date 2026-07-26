@@ -1,15 +1,19 @@
 # Changelog
 
-## 2026-07-26: Opt-in invocation in Codex
+## 2026-07-26: Keep implicit invocation, guard self-initiation instead
 
-### Added
+### Removed
 
-- `policy.allow_implicit_invocation: false` in `agents/openai.yaml`. Codex then
-  never selects this skill from a matching prompt; `$compact-handoff` still
-  works. The `Activation` section added earlier today asks the model to refuse
-  a self-initiated handoff, which depends on the model complying. This setting
-  removes the decision from the model in Codex. Claude Code has no equivalent
-  field, so both guards are needed.
+- `policy.allow_implicit_invocation: false`, added hours earlier and wrong. It
+  stops Codex from selecting the skill out of any prompt, including "hand this
+  over to a new session", which is the request the skill exists to serve. The
+  setting cannot tell a user's request from the model's own idea; it blocks
+  both. Asking in plain words works again, and `$compact-handoff` still works
+  as it always did.
+- The constraint belongs where that distinction can be made: the frontmatter
+  description names the phrases that do and do not count, and the `Activation`
+  section refuses a handoff nobody asked for. Both discriminate on who wanted
+  it, which is the actual requirement.
 
 ### Changed
 

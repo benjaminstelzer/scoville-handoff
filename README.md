@@ -31,7 +31,7 @@ Ask for a `compact handoff`, `context handoff`, `session handoff`, or `Übergabe
 
 **It only runs when you ask.** The skill never produces a handoff on its own initiative. Low remaining context, a finished task, or an approaching session end are not requests, and a request to shorten or summarize is not one either. If it activates without an explicit handoff request, it says so in one sentence and gets back to work.
 
-In Codex this is enforced rather than requested: `agents/openai.yaml` sets `policy.allow_implicit_invocation: false`, so Codex never picks the skill up from a matching prompt and `$compact-handoff` remains the way in. Agents without such a setting rely on the `Activation` rules in `SKILL.md`.
+Asking in your own words is enough. "Hand this over to a new session" triggers the skill exactly as `$compact-handoff` does, because that is a request. The line the skill will not cross is producing a handoff nobody asked for.
 
 It reads version-control state to fill the anchor fields, which is the one thing it does beyond reading the conversation. That inspection is read-only: current branch, HEAD, and working-tree status. Anything it cannot observe is marked `unknown` rather than guessed, and that includes timestamps.
 
