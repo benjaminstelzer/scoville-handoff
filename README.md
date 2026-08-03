@@ -1,12 +1,18 @@
 # Compact Handoff
 
-A small Agent Skill for handing unfinished work to another session without dragging the whole conversation along.
+A small Agent Skill—a reusable instruction file for coding agents—for handing
+unfinished work to another agent or session without dragging the whole
+conversation along.
 
-Its output is one copy-ready English Markdown prompt. The prompt keeps the goal, working state, decisions, evidence, blockers, and next safe action together. It also tells the receiving agent not to trust it: a handoff is a claim about the past, and the working tree has had time to disagree. Verify first, then continue.
+It produces one copy-ready English prompt. That prompt records the goal, current
+state, decisions, evidence, blockers, and next safe action. It also tells the
+receiving agent to verify the summary before continuing: the handoff describes
+what was true when it was written, while the files may have changed since then.
 
 ## Install
 
-Use an agent that supports the Agent Skills format: a `SKILL.md` file with name and description frontmatter.
+Use an agent that supports the Agent Skills format: a `SKILL.md` instruction
+file with its name and description at the top.
 
 Usually, the simplest option is to send your agent this prompt:
 
@@ -15,7 +21,9 @@ Install this Agent Skill from GitHub and make it available for my work:
 https://github.com/benjaminstelzer/compact-handoff/tree/main/compact-handoff
 ```
 
-Add `for all my projects` or `only for this project` when the installation scope matters. The agent should use its supported skills directory, keep the repository name `compact-handoff`, and refresh its skill list.
+Add `for all my projects` or `only for this project` to choose where the skill
+is available. The agent should use its supported skills directory, keep the
+installed folder name `compact-handoff`, and refresh its skill list.
 
 For a manual installation, copy the repository's `compact-handoff/` directory
 so the final path is:
@@ -28,19 +36,39 @@ Skill directories vary between agents. Check your agent's documentation if it ca
 
 ## Use
 
-Ask for a `compact handoff`, `context handoff`, `session handoff`, or `Übergabe an neue Session`. The skill returns the fenced Markdown prompt and nothing else; the output contract does not let it so much as wish the next agent luck.
+Ask for a `compact handoff`, `context handoff`, `session handoff`, or `Übergabe
+an neue Session`. The skill returns one Markdown code block and nothing else;
+it does not get to wish the next agent luck.
 
-**It only runs when you ask.** The skill never produces a handoff on its own initiative. Low remaining context, a finished task, or an approaching session end are not requests, and a request to shorten or summarize is not one either. If it activates without an explicit handoff request, it says so in one sentence and gets back to work.
+**It only runs when you ask.** The skill never produces a handoff on its own.
+Running low on conversation space, finishing a task, or approaching the end of
+a session are not requests. Neither is asking for a shorter answer or a
+summary. If the skill activates without an explicit handoff request, it says so
+in one sentence and gets back to work.
 
-Asking in your own words is enough. "Hand this over to a new session" triggers the skill exactly as `$compact-handoff` does, because that is a request. The line the skill will not cross is producing a handoff nobody asked for.
+Asking in your own words is enough. "Hand this over to a new session" triggers
+the skill exactly as `$compact-handoff` does. The line it will not cross is
+producing a handoff nobody asked for.
 
-It reads version-control state to fill the anchor fields, which is the one thing it does beyond reading the conversation. That inspection is read-only: current branch, HEAD, and working-tree status. Anything it cannot observe is marked `unknown` rather than guessed, and that includes timestamps.
+Beyond reading the conversation, it checks the version-control system, such as
+Git, for three facts:
+
+- the current line of development, called the branch;
+- the latest version recorded by Git, called the commit;
+- any file changes that have not yet been recorded in a commit.
+
+This check cannot change files. Anything the skill cannot observe, including
+timestamps, is marked `unknown` rather than guessed.
 
 **What it costs.** `SKILL.md` is about 1,300 words, including a roughly
-300-word prompt template. It loads when the skill triggers; exact context
-accounting depends on the agent.
+300-word prompt template. The agent reads this text as part of the conversation
+context when the skill runs. The exact token cost depends on the agent.
 
-It complements workflow guardrails such as [Scoville](https://github.com/benjaminstelzer/scoville-anti-ai-coding-slop): their internal handoff rules govern minimal in-place records that survive context compaction, while this skill produces the explicit transfer prompt for handing work to another session.
+It complements workflow guardrails such as
+[Scoville](https://github.com/benjaminstelzer/scoville-anti-ai-coding-slop).
+Scoville controls the brief notes an agent keeps while the same task continues;
+Compact Handoff creates the separate copy-and-paste prompt used to move that
+task to another agent or session.
 
 ## License
 
