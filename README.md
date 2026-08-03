@@ -36,7 +36,9 @@ Asking in your own words is enough. "Hand this over to a new session" triggers t
 
 It reads version-control state to fill the anchor fields, which is the one thing it does beyond reading the conversation. That inspection is read-only: current branch, HEAD, and working-tree status. Anything it cannot observe is marked `unknown` rather than guessed, and that includes timestamps.
 
-**What it costs.** `SKILL.md` contains 1,282 words, of which 309 are the prompt template. It loads when the skill triggers; exact context accounting depends on the agent.
+**What it costs.** `SKILL.md` is about 1,300 words, including a roughly
+300-word prompt template. It loads when the skill triggers; exact context
+accounting depends on the agent.
 
 It complements workflow guardrails such as [Scoville](https://github.com/benjaminstelzer/scoville-anti-ai-coding-slop): their internal handoff rules govern minimal in-place records that survive context compaction, while this skill produces the explicit transfer prompt for handing work to another session.
 

@@ -69,5 +69,6 @@
 
 ### Note
 
-- `SKILL.md` grew from 973 to 1,282 words, of which 309 are the prompt
-  template. The README now states the measured count.
+- `SKILL.md` grew substantially and now includes a roughly 300-word prompt
+  template. The README states the approximate current size without implying a
+  universal Markdown word-count method.
