@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-08-04: Canonical Scoville reference
+
+### Fixed
+
+- Updated the README to link directly to the renamed Scoville Code repository
+  instead of relying on GitHub's redirect from its former name.
+
 ## 2026-07-26: Installable skill separated from repository documentation
 
 ### Changed

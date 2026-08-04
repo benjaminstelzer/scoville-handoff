@@ -65,7 +65,7 @@ timestamps, is marked `unknown` rather than guessed.
 context when the skill runs. The exact token cost depends on the agent.
 
 It complements workflow guardrails such as
-[Scoville](https://github.com/benjaminstelzer/scoville-anti-ai-coding-slop).
+[Scoville Code](https://github.com/benjaminstelzer/scoville-code-anti-ai-slop).
 Scoville controls the brief notes an agent keeps while the same task continues;
 Compact Handoff creates the separate copy-and-paste prompt used to move that
 task to another agent or session.
