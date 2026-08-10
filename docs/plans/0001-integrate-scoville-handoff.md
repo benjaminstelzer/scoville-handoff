@@ -1,10 +1,9 @@
 ---
 format_version: 1
 id: PLAN-0001
-status: active
+status: completed
 created: 2026-08-10
 updated: 2026-08-10
-current_item: W-006
 ---
 
 # Integrate Scoville Handoff into the Scoville suite
@@ -96,7 +95,7 @@ Steps:
 Evidence: [Codex and Claude staging packages validated byte-identical to final Skill hash D9D92F1131C99CE72654FCA7BB57E9E0C2D9497947DFB07DB00FE1360E9490C9, old active installations inventoried without mutation, cutover inventory SHA256 71B87D214C47AC3BA2CFB8EE8AAC98CCDFF8725FE68CB1EBE19B030592F7D5E3, user replaced the recoverable local-only cutover with permanent removal and GitHub publication]
 
 ### W-006 Publish Scoville Handoff and complete the permanent cutover
-Status: in_progress
+Status: done
 Depends on: [W-002, W-005]
 Blocked by: []
 Decisions: [ADR-0001, ADR-0002, ADR-0003, ADR-0004]
@@ -109,5 +108,4 @@ Steps:
 4. Commit the exact reviewed tree and rename the existing GitHub repository to `scoville-handoff`.
 5. Publish the four sibling README links and patch releases plus the updated GitHub profile README.
 6. Push main, create and verify release `v2.0.0`, verify the profile pin, rename the local repository directory, and complete the Plan.
-Evidence: []
-Next action: Update the accepted publication record and public repository text before the authorized local cutover.
+Evidence: [Codex and Claude installed SKILL SHA256 D9D92F1131C99CE72654FCA7BB57E9E0C2D9497947DFB07DB00FE1360E9490C9 with both compact-handoff paths absent, GitHub repository renamed to benjaminstelzer/scoville-handoff with v2.0.0 at commit 32657aa1b9ca293bba144d416367f8d3edc63ece, Code v1.0.9 UI v1.0.9 Scribe v1.0.9 and Plan v1.2.5 releases verified at their pushed commits, all five Skill README family sections link Scoville Handoff and report 1019 runs, BenjaminStelzer profile commit 09a48db03bcae11c9534caa364be42d0171500fe published and the GitHub profile pin resolves to scoville-handoff, local repository moved to Z:/Projekts/AI/scoville-handoff and origin uses scoville-handoff, Skill validators Plan validator diff checks local links package inventories and release queries passed]

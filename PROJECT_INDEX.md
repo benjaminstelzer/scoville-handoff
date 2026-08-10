@@ -1,8 +1,8 @@
 ---
 format_version: 1
-active_plan: PLAN-0001
+active_plan: null
 ---
 
 # Project direction
 
-Read the active Plan and its linked Decisions before changing the Scoville Handoff migration.
+Read the retained Plan and linked Decisions for the completed Scoville Handoff migration history.
