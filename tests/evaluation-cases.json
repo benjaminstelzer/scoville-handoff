@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "skill": "scoville-handoff",
+  "cases": [
+    {
+      "id": "explicit-dirty-transfer",
+      "given": "An explicit new-session handoff request names a dirty tree, separate file owners, validation evidence, missing publication authority, and a secret value.",
+      "expect": [
+        "Return one fenced four-section continuation artifact.",
+        "Preserve each changed path, staged state, owner, evidence, and authorization boundary.",
+        "Retain only the secret variable name and mark its value redacted."
+      ]
+    },
+    {
+      "id": "in-flight-command",
+      "given": "A command was still running at the last observation and only the old session could observe its original exit.",
+      "expect": [
+        "Preserve the command, process identifier, observation time, and unknown exit state.",
+        "Do not claim success or invent an exit code.",
+        "Make recovery of the in-flight result the first safe continuation action after required freshness checks."
+      ]
+    },
+    {
+      "id": "named-canonical-sources",
+      "given": "The user authorizes exactly one read of two named project sources before transfer.",
+      "expect": [
+        "Read each named source exactly once and no unrelated task source.",
+        "Transfer each path beside its material facts rather than substituting a reread instruction.",
+        "Tell the receiver to verify the named canonical sources before changes."
+      ]
+    },
+    {
+      "id": "not-started-transfer",
+      "given": "The user explicitly requests a handoff before implementation begins and there are no blockers or changes.",
+      "expect": [
+        "Still return the complete four-section handoff artifact.",
+        "State not_started and use none known for required unknown values.",
+        "Provide a concrete first action and observable completion criterion."
+      ]
+    },
+    {
+      "id": "negative-summary",
+      "given": "The user asks for a short status summary and explicitly says it is not a transfer.",
+      "expect": [
+        "Do not emit a handoff artifact.",
+        "Do not read task sources or inspect version control for Handoff.",
+        "Perform the requested summary in its requested language and format."
+      ]
+    },
+    {
+      "id": "optional-family-composition",
+      "given": "An active task uses Plan for durable records and names Code, UI, and Scribe concerns before an explicit transfer.",
+      "expect": [
+        "Treat Handoff as the portable snapshot and Plan as the durable record owner.",
+        "Preserve the named state of each optional sibling without requiring or simulating it.",
+        "Keep any sibling opt-out local to that sibling."
+      ]
+    }
+  ]
+}

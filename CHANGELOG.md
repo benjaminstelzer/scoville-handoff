@@ -1,5 +1,44 @@
 # Changelog
 
+## 2026-08-10: Scoville Handoff v2.0.0
+
+### Changed
+
+- Renamed the local Skill identity and installable directory from Compact
+  Handoff to Scoville Handoff while preserving established natural-language
+  transfer requests.
+- Replaced the large conditional template with one four-section continuation
+  artifact and a compact `READ -> CAPTURE -> RENDER -> CHECK -> SEND` transfer
+  machine.
+- Kept objective, acceptance, canonical sources, decisions, constraints,
+  authorization, ownership, dirty changes, evidence, rejected approaches,
+  blockers, in-flight work, hazards, unknowns, and the next safe action.
+- Retired the explicit `$compact-handoff` identifier to avoid duplicate Skill
+  discovery; `$scoville-handoff` is now canonical.
+
+### Validation
+
+- Microsoft SkillOpt at commit `ba820b5` ran with Sol 5.6 xhigh analysis and
+  Terra 5.6 Medium execution; SkillReducer-style reduction removed redundant
+  semantic units before the final reliability hardening.
+- The final candidate passed 3/3 new one-shot sealed qualification cases
+  reviewed by Fable 5 High. Repeated open development runs remained 26/27 and
+  expose one nondeterministic family-ownership miss.
+- The always-loaded Skill fell from 1,689 to 1,086 `o200k_base` tokens, a
+  35.70% reduction from Compact Handoff v1.0.0.
+- The canonical Agent Skill validator, Studio preflight, metadata checks, and
+  local repository checks pass.
+
+### Migration
+
+- Replace an installed `compact-handoff/` directory with
+  `scoville-handoff/`; do not keep both packages installed.
+- Update explicit `$compact-handoff` invocations to `$scoville-handoff`.
+  Natural-language requests such as `compact handoff` and `session handoff`
+  remain supported.
+- Renamed the existing GitHub repository to `scoville-handoff` so its history,
+  issues, and releases remain under one canonical project.
+
 ## 2026-08-04: Canonical Scoville reference
 
 ### Fixed
