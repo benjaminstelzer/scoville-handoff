@@ -1,12 +1,14 @@
 # Scoville Handoff
 
-Transfers the state. Leaves the session behind.
+A handoff should transfer the work, not make the next agent reread the meeting
+minutes.
 
-Scoville Handoff is an Agent Skill for moving active work to another agent or
-session as one compact, copy-ready continuation prompt. It preserves the
-objective, decisions, authority, ownership, evidence, blockers, hazards, dirty
-state, and next safe action. It activates only for an explicit transfer—not for
-a summary, wrap-up, low-context warning, or session ending.
+Scoville Handoff moves active work to another agent or session as one compact,
+copy-ready continuation prompt. It preserves the objective, decisions,
+authority, ownership, evidence, blockers, hazards, dirty state, and next safe
+action. It activates only for an explicit transfer—not for a summary, wrap-up,
+low-context warning, or session ending. Those are nearby tasks, but nearby is
+not the same thing.
 
 ## Why "Scoville"?
 
