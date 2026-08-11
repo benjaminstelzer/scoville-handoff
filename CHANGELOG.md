@@ -1,5 +1,17 @@
 # Changelog
 
+## 2026-08-11: Scoville Brainstorm sibling (v2.0.1)
+
+### Changed
+
+- Added Scoville Brainstorm to the optional family composition guide and kept
+  explicit session transfer separate from divergent exploration.
+- Added copy-ready examples for explicit task and session transfers.
+- Reduced installation, cost, mechanism, and family documentation while
+  retaining the Scoville name rationale, sources, and benchmark evidence.
+- Added a family run ledger and reconciled the public total across all six
+  Scoville Skills.
+
 ## 2026-08-10: Scoville Handoff v2.0.0
 
 ### Changed
