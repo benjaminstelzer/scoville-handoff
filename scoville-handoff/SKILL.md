@@ -5,47 +5,39 @@ description: Transfer active work to another agent or session as one compact, fa
 
 # Scoville Handoff
 
-Create a portable task snapshot only for an explicit transfer. A positive
-response is never a summary; fill the fixed artifact below.
+Create the fixed portable artifact only for an explicit transfer.
 
 ## Dispatch
 
-- `yes`: explicit transfer to another agent/session, including Scoville,
-  compact, context, or session handoff and `Übergabe an neue Session`. Empty,
-  completed, or not-started work stays `yes`.
-- `no`: summary, shortening, recap, wrap-up, context reduction, low context, or
-  session ending without transfer. Perform that task; emit no handoff.
-- `ambiguous`: future reuse without a decided receiver. Ask one question; read
-  no task source and emit no handoff.
+- `yes`: explicit agent/session transfer; empty, completed, or not-started work
+  stays `yes`.
+- `no`: no receiver transfer. Perform the task; emit no handoff.
+- `ambiguous`: future reuse without a receiver. Ask one question; read nothing
+  and emit no handoff.
 
 ## Transfer machine
 
-For `yes`, execute `READ -> CAPTURE -> RENDER -> CHECK -> SEND` without skipping:
+For `yes`: `READ -> CAPTURE -> RENDER -> CHECK -> SEND`.
 
-1. **READ:** Read every named task source exactly once; optionally inspect
-   version control read-only. Do not reread, stat, list, or re-inspect a read
-   source or this Skill. Do not edit, cause external effects, or run probes,
-   dummy commands, or task commands.
-2. **CAPTURE:** Immediately copy every non-secret statement from each nonempty
-   read result into one in-memory ledger; never report a nonempty source as
-   unavailable. Retain only facts that affect continuation, but never replace a
-   fact with its source name or a reread instruction. Preserve literally all
-   known IDs, paths, commits, URLs, commands, errors, quoted decisions,
-   constraints, authorization, ownership, dirty changes, evidence, external
-   state, rejected approaches, blockers, in-flight work, hazards, assumptions,
-   unknowns, time-sensitive facts, and next safe action. The handoff request is
+1. **READ:** Read each named source exactly once; optional read-only version
+   control. No reread, stat, list, reinspection, edit, external effect, probe,
+   dummy command, or task command.
+2. **CAPTURE:** Immediately ledger every non-secret statement from each nonempty
+   result; never call that source unavailable. Keep only continuation facts;
+   never substitute a source name or reread instruction. Preserve literally
+   every Objective/State-label fact plus all IDs, paths, commits, URLs, commands,
+   errors, quoted decisions, assumptions, unknowns, time-sensitive facts, and
+   the next safe action. The handoff request is
    not itself a decision. Use `unknown` or `none known` instead of inference.
    Omit secret values; retain a needed variable name and mark its value
    redacted. Runtime CWD, temporary workspace, and host state are not task facts
    unless the user or a named source supplies them.
-3. **RENDER:** Copy the artifact. Keep all four H2s and fixed Receiver bullets.
-   Under `State`, use compact labeled bullets for every applicable ledger fact;
-   name every read source once beside its transferred facts, state each fact
-   once unless it also controls a hazard or first step, and omit only labels
-   with no fact. A not-started or empty task still renders the
-   full artifact with `Status: not_started` and `none known` required values.
-   Resume Step 1 is the first blocker resolution, else first in-flight recovery,
-   else the next safe action.
+3. **RENDER:** Copy the artifact with all H2s and fixed Receiver bullets. Under
+   `State`, label every applicable fact; name each source once beside its facts;
+   repeat a fact only for a hazard or first step; omit only empty labels. Empty
+   or not-started work still renders fully with `Status: not_started` and
+   required `none known` values. Step 1 resolves the first blocker, else
+   recovers in-flight work, else takes the next safe action.
 
 `````
 ````markdown
@@ -85,15 +77,17 @@ For `yes`, execute `READ -> CAPTURE -> RENDER -> CHECK -> SEND` without skipping
 ````
 `````
 
-4. **CHECK:** Compare artifact with the ledger. Every known continuation fact,
-   named source, literal identifier, required objective field, fixed Receiver
-   bullet, and first safe step must be present. Resume steps must be concrete
-   actions and end with an observable completion criterion; no placeholder,
-   secret, invented fact, or execution detail may remain. On failure, return to
-   CAPTURE without rereading.
+4. **CHECK:** Compare with the ledger: include every fact, source, literal ID,
+   required Objective field, fixed Receiver bullet, and first safe step. Steps
+   are concrete and end in an observable completion criterion; no placeholder,
+   secret, invention, or execution detail remains. Failure returns to CAPTURE.
 5. **SEND:** Return exactly the fenced artifact, with nothing outside it.
 
-Handoff owns the snapshot. Scoville Plan retains Plans, Work Items, and
-Decisions; Code, UI, and Scribe retain their optional domains. Preserve their
-state without requiring or simulating them; one sibling opt-out affects only
-that sibling.
+Handoff owns the snapshot. Family standalone:
+discovery != installed|active|applicable|required; absent|inactive => ignore/no
+require|install|simulate|reimplement; active+applicable => owner concern only,
+self continues; opt-out local. Owners:
+`scoville-brainstorm` divergence; `scoville-code-anti-ai-slop`
+engineering/proof; `scoville-ui-anti-ai-slop` interface/rendered proof;
+`scoville-scribe-anti-ai-slop` wording/fidelity; `scoville-plan`
+records/lifecycle. Preserve active sibling state in the snapshot.
