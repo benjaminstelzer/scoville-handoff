@@ -3,6 +3,18 @@
 A handoff should transfer the work, not make the next agent reread the meeting
 minutes.
 
+It usually looks harmless:
+
+- The receiver gets three pages of summary, but not the current blocker.
+- "Tests pass" enters the handoff while the test command is still running.
+- The working tree is called dirty without saying which changes belong to the
+  user, which belong to the task, or which should not be touched.
+- The first resume step is "continue the implementation." Technically a verb;
+  operationally a small shrug.
+
+That is handoff slop: the conversation is compressed while the state needed to
+continue evaporates. The receiver inherits a literary genre, not a task.
+
 Scoville Handoff moves active work to another agent or session as one compact,
 copy-ready continuation prompt. It preserves the objective, decisions,
 authority, ownership, evidence, blockers, hazards, dirty state, and next safe
