@@ -9,8 +9,8 @@ It usually looks harmless:
 - "Tests pass" enters the handoff while the test command is still running.
 - The working tree is called dirty without saying which changes belong to the
   user, which belong to the task, or which should not be touched.
-- The first resume step is "continue the implementation." Technically a verb;
-  operationally a small shrug.
+- The first resume step is "continue the implementation." Technically a verb.
+  Operationally a small shrug.
 
 That is handoff slop: the conversation is compressed while the state needed to
 continue evaporates. The receiver inherits a literary genre, not a task.
@@ -18,7 +18,7 @@ continue evaporates. The receiver inherits a literary genre, not a task.
 Scoville Handoff moves active work to another agent or session as one compact,
 copy-ready continuation prompt. It preserves the objective, decisions,
 authority, ownership, evidence, blockers, hazards, dirty state, and next safe
-action. It activates only for an explicit transfer—not for a summary, wrap-up,
+action. It activates only for an explicit transfer - not for a summary, wrap-up,
 low-context warning, or session ending. Those are nearby tasks, but nearby is
 not the same thing.
 
@@ -45,7 +45,7 @@ Use Scoville Handoff for the work completed in this session. Mark unverified com
 ```
 
 Explicit `$scoville-handoff` invocation also works on hosts that support named
-Skill invocation. The former `$compact-handoff` identifier is retired; natural
+Skill invocation. The former `$compact-handoff` identifier is retired. Natural
 requests such as “compact handoff” still activate this Skill.
 
 ## Install
@@ -65,7 +65,7 @@ Other hosts use their supported Skills directory.
 
 **What it costs.** The 1,086-token Core is 35.70% smaller than Compact Handoff
 `v1.0.0`. That context buys a safer transfer of authority, dirty state,
-evidence, hazards, and the next action. Use it for real session transfers; skip
+evidence, hazards, and the next action. Use it for real session transfers. Skip
 it for a brief task that needs no continuation snapshot. See
 [benchmark evidence](docs/benchmark-evidence.md).
 
@@ -76,12 +76,12 @@ it for a brief task that needs no continuation snapshot. See
 - **One receiver contract.** Every handoff contains Receiver Instructions,
   Objective, State, and Resume Steps in one copy-ready block.
 - **Facts instead of pointers.** Named sources are read once and their material
-  facts enter the artifact; the receiver is not sent on a scavenger hunt.
+  facts enter the artifact. The receiver is not sent on a scavenger hunt.
 - **Authority and ownership survive.** Commit, publication, destructive-action,
   external-effect, file-owner, and dirty-tree boundaries stay explicit.
 - **Unknown stays unknown.** Running or unobserved work never becomes a success
   claim, and secret values never enter the handoff.
-- **The receiver can act.** Step 1 is the next safe action; the final step names
+- **The receiver can act.** Step 1 is the next safe action. The final step names
   an observable completion result.
 - **Transfer does not advance the task.** Handoff reads the named state but does
   not edit, test, publish, or otherwise improve it on the way out.
@@ -93,7 +93,7 @@ The complete contract is in [SKILL.md](scoville-handoff/SKILL.md).
 The Skill runs `READ -> CAPTURE -> RENDER -> CHECK -> SEND`: read each named
 source once, capture non-secret continuation facts, map them into four fixed
 sections, compare the artifact with the ledger, and return only the copy-ready
-prompt. The receiver must still verify current state. A snapshot is useful; it
+prompt. The receiver must still verify current state. A snapshot is useful. It
 is not a lease on reality.
 
 ## Scoville family
