@@ -1,5 +1,18 @@
 # Changelog
 
+## 2026-08-19: Public validation wording (v2.0.7)
+
+### Changed
+
+- Removed external model-review approval from the historical validation record.
+- Kept the technical validation statements, Skill package, and behavior
+  unchanged.
+
+### Validation
+
+- Changelog no longer uses external approval as completion evidence.
+- The unchanged Agent Skill package passes canonical validation.
+
 ## 2026-08-11: Concrete slop examples (v2.0.4)
 
 ### Changed
@@ -87,9 +100,9 @@
 - Microsoft SkillOpt at commit `ba820b5` ran with Sol 5.6 xhigh analysis and
   Terra 5.6 Medium execution; SkillReducer-style reduction removed redundant
   semantic units before the final reliability hardening.
-- The final candidate passed 3/3 new one-shot sealed qualification cases
-  reviewed by Fable 5 High. Repeated open development runs remained 26/27 and
-  expose one nondeterministic family-ownership miss.
+- The final candidate passed 3/3 new one-shot sealed qualification cases.
+  Repeated open development runs remained 26/27 and expose one nondeterministic
+  family-ownership miss.
 - The always-loaded Skill fell from 1,689 to 1,086 `o200k_base` tokens, a
   35.70% reduction from Compact Handoff v1.0.0.
 - The canonical Agent Skill validator, Studio preflight, metadata checks, and
