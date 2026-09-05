@@ -24,7 +24,7 @@ not the same thing.
 
 ## Why "Scoville"?
 
-The family is named for useful signal that survives dilution. In a handoff, the
+The family is named for useful signal that remains detectable after dilution. In a handoff, the
 heat is the operational state the receiver still needs after the conversation
 is compressed and politely shown the door.
 
@@ -50,24 +50,39 @@ requests such as “compact handoff” still activate this Skill.
 
 ## Install
 
-Use an Agent Skills-compatible host and Terra 5.6 Medium or a comparably
-capable executor such as Opus 4.8. Ask the agent to install:
+### Install this Skill
+
+In a local Codex or Claude Code session, ask:
 
 ```text
-Install this Agent Skill and refresh the available Skill list:
+Install this Agent Skill for all my projects from this exact package directory:
 https://github.com/benjaminstelzer/scoville-handoff/tree/main/scoville-handoff
-Keep the installed directory name scoville-handoff. Use Terra 5.6 Medium or a comparably capable executor such as Opus 4.8.
+Preserve existing customizations and ask before overwriting conflicting files.
+Report the installed location and whether the host discovers the Skill.
 ```
 
-The final path must end in `<skills-dir>/scoville-handoff/SKILL.md`. For Claude
-Code, use `~/.claude/skills/` globally or `.claude/skills/` inside one project.
-Other hosts use their supported Skills directory.
+The agent needs source access and permission to write to its personal Skills
+location. Manual fallback: [Codex Skills guide](https://learn.chatgpt.com/docs/build-skills)
+or [Claude Code Skills guide](https://code.claude.com/docs/en/skills).
 
-**What it costs.** The 1,086-token Core is 35.70% smaller than Compact Handoff
-`v1.0.0`. That context buys a safer transfer of authority, dirty state,
-evidence, hazards, and the next action. Use it for real session transfers. Skip
-it for a brief task that needs no continuation snapshot. See
-[benchmark evidence](docs/benchmark-evidence.md).
+Install only the linked package for the focused option.
+
+### Install the complete Scoville suite
+
+```text
+Install the complete Scoville Skill suite for all my projects. Fetch and install every exact package directory below:
+
+https://github.com/benjaminstelzer/scoville-brainstorm/tree/main/scoville-brainstorm
+https://github.com/benjaminstelzer/scoville-research/tree/main/scoville-research
+https://github.com/benjaminstelzer/scoville-code-anti-ai-slop/tree/main/scoville-code-anti-ai-slop
+https://github.com/benjaminstelzer/scoville-design-anti-ai-slop/tree/main/scoville-design-anti-ai-slop
+https://github.com/benjaminstelzer/scoville-ui-anti-ai-slop/tree/main/scoville-ui-anti-ai-slop
+https://github.com/benjaminstelzer/scoville-scribe-anti-ai-slop/tree/main/scoville-scribe-anti-ai-slop
+https://github.com/benjaminstelzer/scoville-plan/tree/main/scoville-plan
+https://github.com/benjaminstelzer/scoville-handoff/tree/main/scoville-handoff
+
+Preserve existing customizations and ask before overwriting conflicting files. Report every installed location and whether the host discovers each Skill.
+```
 
 ## What it enforces
 
@@ -75,7 +90,8 @@ it for a brief task that needs no continuation snapshot. See
   produce a handoff artifact.
 - **One receiver contract.** Every handoff contains Receiver Instructions,
   Objective, State, and Resume Steps in one copy-ready block.
-- **Facts instead of pointers.** Named sources are read once and their material
+- **Facts instead of pointers.** Named sources are read with targeted recovery
+  for truncation or a transient failure, within explicit user limits. Their material
   facts enter the artifact. The receiver is not sent on a scavenger hunt.
 - **Authority and ownership survive.** Commit, publication, destructive-action,
   external-effect, file-owner, and dirty-tree boundaries stay explicit.
@@ -90,11 +106,20 @@ The complete contract is in [SKILL.md](scoville-handoff/SKILL.md).
 
 ## How it works
 
-The Skill runs `READ -> CAPTURE -> RENDER -> CHECK -> SEND`: read each named
-source once, capture non-secret continuation facts, map them into four fixed
+The Skill runs `READ -> CAPTURE -> RENDER -> CHECK -> SEND`: inspect named
+sources with bounded read recovery, capture non-secret continuation facts, map them into four fixed
 sections, compare the artifact with the ledger, and return only the copy-ready
 prompt. The receiver must still verify current state. A snapshot is useful. It
 is not a lease on reality.
+
+A tight output limit removes repetition and irrelevant history first, never
+authority, ownership, hazards, evidence limits, or the safe next step. An
+explicit lossless request retains every in-scope non-secret fact. If the
+required content cannot fit, the Skill reports that conflict instead of
+claiming a complete transfer.
+
+For repository structure and development tools, see
+[maintenance notes](docs/maintenance.md).
 
 ## Scoville family
 
@@ -121,14 +146,15 @@ needs:
 
 ## Status
 
-A reliability-first extension of
-[Microsoft SkillOpt](https://github.com/microsoft/SkillOpt), combined with
-SkillReducer-style reduction, tested the six Scoville Skills across **1,201
-optimization and evaluation runs**. Scoville Handoff accounts for **222 runs
-and 620 benchmark case executions**, passed **3/3 new sealed qualification
-cases**, and uses **35.70% fewer loaded instruction tokens than Compact Handoff
-v1.0.0**. See [benchmark evidence](docs/benchmark-evidence.md).
-The [family run ledger](docs/optimization-history.md) shows the complete count.
+The historical Core qualified on 2026-08-10 passed 3/3 sealed cases by semantic
+review and independent output audit. The raw generic score was 0/3 because of
+scoring-contract mismatches. Both results and the candidate hash remain in
+[benchmark evidence](docs/benchmark-evidence.md).
+
+Focused Terra Medium cases on 2026-09-05 preserved the required continuation
+facts and reported a conflict when those facts could not fit a 35-word limit.
+They did not inject a real transient read error or establish general receiver
+success. Historical scores do not qualify the changed Core.
 
 ## Sources
 
@@ -145,4 +171,4 @@ The [family run ledger](docs/optimization-history.md) shows the complete count.
 
 ## License
 
-MIT - see [LICENSE](LICENSE).
+MIT. See [LICENSE](LICENSE).

@@ -1,5 +1,15 @@
 # Changelog
 
+## v2.0.8 - 2026-09-05
+
+- Shortened the README, moved contributor layout notes to docs/maintenance.md, and made agent installation the primary path. Safety and evidence limits remain explicit.
+- Added separate prompts for this Skill and the complete live-verified Scoville suite.
+- Added bounded recovery for truncated or transiently failed named-source reads, preserving explicit user read limits and source gaps.
+- Documented package, development tests and retained native-record boundaries.
+- Defined the mandatory continuation facts and tight-limit priority. Explicit lossless requests remain lossless except secret redaction.
+- Bound historical README metrics to the qualified Core and retained the raw and adjudicated outcomes separately.
+- Included the repository license in the copied package. New recovery cases are development definitions, not executed model qualification.
+
 ## 2026-08-19: Public validation wording (v2.0.7)
 
 ### Changed

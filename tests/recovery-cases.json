@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "skill": "scoville-handoff",
+  "evidence": "Development case definitions only. Not executed model tests or sealed qualification.",
+  "cases": [
+    {
+      "id": "truncated-source-recovery",
+      "given": "A named plan is truncated before its Blocked by and Next action fields.",
+      "expect": [
+        "Finish only the missing range. Keep source ownership. Do not test or advance the plan."
+      ]
+    },
+    {
+      "id": "explicit-one-read-limit",
+      "given": "The user permits exactly one read and it is partial.",
+      "expect": [
+        "Do not retry. Preserve known facts and mark unread ranges as a receiver verification blocker."
+      ]
+    },
+    {
+      "id": "bounded-transient-retry",
+      "given": "A named source fails twice with a transient error.",
+      "expect": [
+        "Stop after the one retry. Never invent source facts or scan other files."
+      ]
+    },
+    {
+      "id": "tight-output-limit",
+      "given": "A long log includes repetitive history, an owned dirty file, a running process handle and unobserved exit.",
+      "expect": [
+        "Omit irrelevant history. Keep ownership, running handle, unknown exit, evidence boundary and safe recovery step."
+      ]
+    },
+    {
+      "id": "lossless-transfer",
+      "given": "The user explicitly requests a lossless transfer within a limit too short to hold every in-scope fact.",
+      "expect": [
+        "Do not silently summarize. Report the size conflict and ask for a larger limit. Redact secret values."
+      ]
+    },
+    {
+      "id": "mandatory-set-too-large",
+      "given": "Even after removing irrelevant history the fixed receiver instructions and safe continuation facts exceed the limit.",
+      "expect": [
+        "Report the limit conflict, not a supposedly complete artifact with missing authority or blockers."
+      ]
+    }
+  ]
+}
