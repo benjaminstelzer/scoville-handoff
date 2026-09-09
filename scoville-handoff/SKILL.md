@@ -1,6 +1,7 @@
 ---
 name: scoville-handoff
 description: Transfer active work to another agent or session as one compact, factual, copy-ready continuation prompt with fixed Receiver Instructions, Objective, State, and Resume Steps. Use only when the user explicitly asks for Scoville Handoff, a compact/context/session handoff, a handoff to a new session, "Übergabe an neue Session", or an equivalent transfer. Preserve objective, decisions, state, ownership, evidence, blockers, hazards, and next safe action. Do not use for summarizing, shortening, wrapping up, ordinary context reduction, low context, or session ending. Read only named task sources and optional version control; run no task or dummy command.
+compatibility: "Any Agent Skills host that can read the named task sources. Optional read-only version-control inspection (git). No scripts, no network, no subagents. Developed for Codex and Claude Code; other hosts untested."
 ---
 
 # Scoville Handoff
