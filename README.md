@@ -122,8 +122,7 @@ explicit lossless request retains every in-scope non-secret fact. If the
 required content cannot fit, the Skill reports that conflict instead of
 claiming a complete transfer.
 
-For repository structure and development tools, see
-[maintenance notes](development/docs/maintenance.md).
+Repository validation and retention rules are in [development](development/README.md).
 
 ## Scoville family
 
@@ -150,17 +149,9 @@ needs:
 
 ## Status
 
-The historical Core qualified on 2026-08-10 passed 3/3 sealed cases by semantic
-review and independent output audit. The raw generic score was 0/3 because of
-scoring-contract mismatches. Both results and the candidate hash remain in
-[benchmark evidence](development/docs/benchmark-evidence.md).
-
-Focused Terra Medium cases on 2026-09-05 preserved the required continuation
-facts and reported a conflict when those facts could not fit a 35-word limit.
-They did not inject a real transient read error or establish general receiver
-success. Historical scores do not qualify the changed Core.
-
-Repository development and the current path mapping are in [development/](development/README.md).
+The package retains deterministic handoff and recovery cases. Historical model
+runs are summarized in the changelog; they do not qualify the changed Core or
+establish general receiver success across hosts and failure modes.
 
 ## Sources
 
