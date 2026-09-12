@@ -1,32 +1,21 @@
 # Scoville Handoff
 
-A handoff should transfer the work, not make the next agent reread the meeting
-minutes.
+The next session needs enough information to continue the work. A long account
+of the conversation can still miss the current blocker, the uncommitted changes
+or the reason an earlier approach failed.
 
-It usually looks harmless:
+Scoville Handoff turns active work into one compact continuation prompt. It
+preserves the objective, decisions, permissions, file ownership, observed
+results and next safe action. A test that is still running stays unresolved.
+Changes belonging to the user remain identifiable.
 
-- The receiver gets three pages of summary, but not the current blocker.
-- "Tests pass" enters the handoff while the test command is still running.
-- The working tree is called dirty without saying which changes belong to the
-  user, which belong to the task, or which should not be touched.
-- The first resume step is "continue the implementation." Technically a verb.
-  Operationally a small shrug.
-
-That is handoff slop: the conversation is compressed while the state needed to
-continue evaporates. The receiver inherits a literary genre, not a task.
-
-Scoville Handoff moves active work to another agent or session as one compact,
-copy-ready continuation prompt. It preserves the objective, decisions,
-authority, ownership, evidence, blockers, hazards, dirty state, and next safe
-action. It activates only for an explicit transfer - not for a summary, wrap-up,
-low-context warning, or session ending. Those are nearby tasks, but nearby is
-not the same thing.
+Request it when you want to transfer work to another agent or session. Ordinary
+summaries, low context and ending a conversation do not activate it.
 
 ## Why "Scoville"?
 
-The family is named for useful signal that remains detectable after dilution. In a handoff, the
-heat is the operational state the receiver still needs after the conversation
-is compressed and politely shown the door.
+The family is named for useful signal that remains detectable after dilution.
+In Handoff, that means preserving what the next session needs when the conversation is shortened.
 
 ## How to use
 
@@ -96,7 +85,7 @@ Preserve existing customizations and ask before overwriting conflicting files. R
   Objective, State, and Resume Steps in one copy-ready block.
 - **Facts instead of pointers.** Named sources are read with targeted recovery
   for truncation or a transient failure, within explicit user limits. Their material
-  facts enter the artifact. The receiver is not sent on a scavenger hunt.
+  facts enter the artifact so the receiver has them when resuming.
 - **Authority and ownership survive.** Commit, publication, destructive-action,
   external-effect, file-owner, and dirty-tree boundaries stay explicit.
 - **Unknown stays unknown.** Running or unobserved work never becomes a success
@@ -113,8 +102,7 @@ The complete contract is in [SKILL.md](scoville-handoff/SKILL.md).
 The Skill runs `READ -> CAPTURE -> RENDER -> CHECK -> SEND`: inspect named
 sources with bounded read recovery, capture non-secret continuation facts, map them into four fixed
 sections, compare the artifact with the ledger, and return only the copy-ready
-prompt. The receiver must still verify current state. A snapshot is useful. It
-is not a lease on reality.
+prompt. The receiver checks the current state before acting on the handoff.
 
 A tight output limit removes repetition and irrelevant history first, never
 authority, ownership, hazards, evidence limits, or the safe next step. An
@@ -122,22 +110,18 @@ explicit lossless request retains every in-scope non-secret fact. If the
 required content cannot fit, the Skill reports that conflict instead of
 claiming a complete transfer.
 
-Repository validation and retention rules are in [development](development/README.md).
-
 ## How it was developed
 
-Handoff grew out of transferring real work between sessions and seeing what
-the receiver still needed. Its [history](CHANGELOG.md) traces the move from a
-large conditional template to a compact continuation record that keeps
-authority, dirty changes, failed approaches and the next safe action.
-[SkillOpt and reduction work](https://github.com/benjaminstelzer/scoville-handoff/blob/d319aa3291160a20d30baad5157b1ab5083ea0e1/CHANGELOG.md)
-helped refine that contract, with an intermittent ownership miss still visible
-in the development results.
+Handoff grew out of moving real work between sessions and seeing what the next
+session was missing. A long summary could still omit the current blocker or
+fail to say which local changes belonged to the user. The
+[changelog](CHANGELOG.md) traces the move from a large conditional template to
+four sections built around continuing the work.
 
-I continue examining complete task histories and the handoffs they produce to
-find lost facts, repeated failed work and unnecessary tokens. Corrections feed
-back into the instructions and transfer cases. A shorter handoff is useful
-only if the next session can still continue the work.
+I used [SkillOpt and reduction work](https://github.com/benjaminstelzer/scoville-handoff/blob/d319aa3291160a20d30baad5157b1ab5083ea0e1/CHANGELOG.md)
+to refine that format. In ongoing use, I compare the task history with the
+handoff to look for lost facts, repeated failed approaches and unnecessary
+detail. A shorter handoff helps only if the next session can still act on it.
 
 ## Scoville family
 
@@ -161,12 +145,6 @@ needs:
   Work Items, Decisions, and lifecycle state.
 - [Handoff](https://github.com/benjaminstelzer/scoville-handoff) transfers active
   work to another agent or session.
-
-## Status
-
-The package retains deterministic handoff and recovery cases. Historical model
-runs are summarized in the changelog; they do not qualify the changed Core or
-establish general receiver success across hosts and failure modes.
 
 ## Sources
 
