@@ -4,7 +4,7 @@ The only installable package is [`scoville-handoff/`](../scoville-handoff/). Cur
 
 ## Validate
 
-Check Skill frontmatter, UI metadata, package links, and the JSON syntax of `tests/evaluation-cases.json` and `tests/recovery-cases.json`. Review freshness, authority preservation, secret handling, and receiver instructions directly against the canonical Skill. Case definitions do not prove receiver success in a live transfer.
+Review freshness, authority preservation, secret handling, and receiver instructions directly against the canonical Skill. Case definitions do not prove receiver success in a live transfer.
 
 ## Retention
 

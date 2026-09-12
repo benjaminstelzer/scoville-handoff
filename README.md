@@ -124,6 +124,21 @@ claiming a complete transfer.
 
 Repository validation and retention rules are in [development](development/README.md).
 
+## How it was developed
+
+Handoff grew out of transferring real work between sessions and seeing what
+the receiver still needed. Its [history](CHANGELOG.md) traces the move from a
+large conditional template to a compact continuation record that keeps
+authority, dirty changes, failed approaches and the next safe action.
+[SkillOpt and reduction work](https://github.com/benjaminstelzer/scoville-handoff/blob/d319aa3291160a20d30baad5157b1ab5083ea0e1/CHANGELOG.md)
+helped refine that contract, with an intermittent ownership miss still visible
+in the development results.
+
+I continue examining complete task histories and the handoffs they produce to
+find lost facts, repeated failed work and unnecessary tokens. Corrections feed
+back into the instructions and transfer cases. A shorter handoff is useful
+only if the next session can still continue the work.
+
 ## Scoville family
 
 Each Skill works independently. Combine only the concerns the task actually
