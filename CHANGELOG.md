@@ -1,5 +1,12 @@
 # Changelog
 
+## v2.0.14 - 2026-09-19
+
+- Copy the continuation record from a packaged template instead of embedding a
+  nested fenced template in the core instructions.
+- State the complete eight-Skill ownership boundary in suite order while
+  keeping every sibling optional and independently activated.
+
 ## v2.0.8 - 2026-09-05
 
 - Added bounded recovery when a named source is truncated or fails
@@ -31,7 +38,7 @@
 - Replace explicit `$compact-handoff` invocations with `$scoville-handoff`.
   Natural-language transfer requests remain supported.
 
-## 2026-07-26: Explicit activation and usable transfer records
+## v1.0.0 - 2026-07-26
 
 - Require an explicit transfer request. Low context, a long conversation,
   compaction, or a finished task does not activate the Skill by itself.
