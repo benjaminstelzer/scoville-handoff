@@ -74,7 +74,7 @@ For `yes`: `READ -> CAPTURE -> RENDER -> CHECK -> SEND`.
 
 Handoff owns the snapshot.
 
-Finding another Skill in this family does not make it installed, active, applicable, or required. If that Skill is absent or inactive, ignore it. Do not require, install, simulate, or reimplement it. If it is active and applicable, let it handle only its stated concern while this Skill continues its own authorized work. An opt-out applies only to the Skill the user excluded, not to independently authorized work.
+Discovering a sibling does not mean it is installed, active, applicable, or required. If a sibling is absent or inactive, ignore it. Do not require, install, simulate, or reimplement it. If it is active and applicable, it owns only its concern. This Skill continues. Opt-out is local.
 
 Family owners, in suite order:
 
