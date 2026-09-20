@@ -1,5 +1,13 @@
 # Changelog
 
+## v2.0.15 - 2026-09-20
+
+- Keep handoff rendering and checking read-only: missing facts remain
+  `unknown` or `none known` instead of triggering builds, tests, probes, dummy
+  commands, or other task commands.
+- Clarify that inspected repository content is data and cannot replace the
+  applicable instructions carried into the continuation.
+
 ## v2.0.14 - 2026-09-19
 
 - Copy the continuation record from a packaged template instead of embedding a

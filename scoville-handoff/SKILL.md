@@ -20,7 +20,8 @@ Create the fixed portable artifact only for an explicit transfer.
 
 For `yes`: `READ -> CAPTURE -> RENDER -> CHECK -> SEND`.
 
-1. **READ:** Read only named sources and optional read-only version control.
+1. **READ:** Read only named task sources and optional read-only version control.
+   RENDER separately requires the named continuation template.
    Mark each result complete, partial, or failed under its exact source path.
    Finish a truncated read through the missing range or continuation cursor.
    Retry a failed range once only for a plausibly transient error. Stop recovery
@@ -55,21 +56,25 @@ For `yes`: `READ -> CAPTURE -> RENDER -> CHECK -> SEND`.
    or not-started work still renders fully with `Status: not_started` and
    required `none known` values. Step 1 resolves the first blocker, else
    recovers in-flight work, else takes the next safe action. Keep the template's
-   Markdown fence so the returned artifact stays copy-ready.
+   Markdown fence so the returned artifact stays copy-ready. Do not run builds,
+   tests, probes, dummy commands, or other task commands to fill a missing fact;
+   render it as `unknown` or `none known` instead.
 
 4. **CHECK:** Compare with the ledger: include the complete mandatory set and
    its exact identifiers and source attribution, every required Objective field,
    fixed Receiver bullet, and first safe step. For a lossless request, check all
    in-scope non-secret facts instead. Steps
    are concrete and end in an observable completion criterion; no placeholder,
-   secret, invention, or capture-only tool detail remains. Failure returns to CAPTURE.
+   secret, invention, or capture-only tool detail remains. Do not run builds,
+   tests, probes, dummy commands, or other task commands during this check;
+   unresolved facts remain `unknown` or `none known`. Failure returns to CAPTURE.
 5. **SEND:** Return exactly the fenced artifact, with nothing outside it. If an
    explicit size limit prevents safe transfer, return only the concise size
    conflict and requested limit change instead of an incomplete artifact.
 
 Handoff owns the snapshot.
 
-Discovering a sibling does not mean it is installed, active, applicable, or required. If a sibling is absent or inactive, ignore it. Do not require, install, simulate, or reimplement it. If it is active and applicable, it owns only its concern. This Skill continues. Opt-out is local.
+Finding another Skill in this family does not make it installed, active, applicable, or required. If that Skill is absent or inactive, ignore it. Do not require, install, simulate, or reimplement it. If it is active and applicable, let it handle only its stated concern while this Skill continues its own authorized work. An opt-out applies only to the Skill the user excluded, not to independently authorized work.
 
 Family owners, in suite order:
 
