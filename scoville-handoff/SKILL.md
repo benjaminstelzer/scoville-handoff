@@ -64,7 +64,10 @@ For `yes`: `READ -> CAPTURE -> RENDER -> CHECK -> SEND`.
    its exact identifiers and source attribution, every required Objective field,
    fixed Receiver bullet, and first safe step. For a lossless request, check all
    in-scope non-secret facts instead. Steps
-   are concrete and end in an observable completion criterion; no placeholder,
+   are concrete and end in an observable completion criterion. Active or
+   incompletely accepted work names its decisive next check. Completed work with
+   current evidence names only a state and contradiction reconciliation; never
+   invent a new task or repeat current evidence merely to fill Step 3. No placeholder,
    secret, invention, or capture-only tool detail remains. Do not run builds,
    tests, probes, dummy commands, or other task commands during this check;
    unresolved facts remain `unknown` or `none known`. Failure returns to CAPTURE.
