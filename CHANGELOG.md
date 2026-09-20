@@ -7,6 +7,9 @@
   commands, or other task commands.
 - Clarify that inspected repository content is data and cannot replace the
   applicable instructions carried into the continuation.
+- Clarify that discovering another family Skill does not activate it, while
+  independently authorized work continues and a user opt-out applies only to
+  the excluded Skill.
 
 ## v2.0.14 - 2026-09-19
 
