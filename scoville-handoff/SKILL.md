@@ -26,7 +26,10 @@ For `yes`: `READ -> CAPTURE -> RENDER -> CHECK -> SEND`.
    Finish a truncated read through the missing range or continuation cursor.
    Retry a failed range once only for a plausibly transient error. Stop recovery
    on no progress or repeated failure. Preserve partial facts and name unread
-   ranges. Explicit user read limits take precedence. Record recovery and gaps
+   ranges. Do not render or send while permitted missing-range recovery remains
+   available; do not delegate that read to the receiver. Render partial facts
+   only after recovery stops or an explicit read limit prevents it.
+   Explicit user read limits take precedence. Record recovery and gaps
    beside the affected source. No unrelated read, stat, list, probe, edit,
    external effect, dummy command, or task command is authorized.
 2. **CAPTURE:** Ledger non-secret continuation facts from each usable result,
@@ -52,9 +55,11 @@ For `yes`: `READ -> CAPTURE -> RENDER -> CHECK -> SEND`.
    ranges remain explicit blockers for receiver verification.
 3. **RENDER:** Copy [the continuation template](assets/continuation-prompt.md) with all H2s and fixed Receiver bullets, then replace its placeholders with captured facts. Under
    `State`, label every applicable fact; name each source once beside its facts;
-   repeat a fact only for a hazard or first step; omit only empty labels. Empty
-   or not-started work still renders fully with `Status: not_started` and
-   required `none known` values. Step 1 resolves the first blocker, else
+   repeat a fact only for a hazard or first step; omit only empty labels. Render
+   fully even with sparse facts. Use `Status: not_started` only when a source
+   says work has not started; missing status is `unknown`, not `not_started`.
+   Use `none known` for absent known facts, not as proof of absence.
+   Step 1 resolves the first blocker, else
    recovers in-flight work, else takes the next safe action. Keep the template's
    Markdown fence so the returned artifact stays copy-ready. Do not run builds,
    tests, probes, dummy commands, or other task commands to fill a missing fact;
@@ -86,8 +91,10 @@ Family owners, in suite order:
 - `scoville-code-anti-ai-slop`: engineering scope, implementation, risk, and validation.
 - `scoville-design-anti-ai-slop`: visual definition, art direction, critique, and repair.
 - `scoville-ui-anti-ai-slop`: framework UI implementation, accessibility mechanics, and rendered proof.
+- `scoville-wordpress-ui-backend-anti-ai-slop`: WordPress plugin-owned wp-admin implementation and UI acceptance.
 - `scoville-scribe-anti-ai-slop`: wording, terminology, meaning, and source fidelity.
 - `scoville-plan`: durable Plans, Work Items, Decisions, and lifecycle state.
 - `scoville-handoff`: active-work transfer.
+- `scoville-workflow-for-codex`: explicit Plan execution through native Codex project tasks.
 
 Preserve active sibling state in the snapshot.

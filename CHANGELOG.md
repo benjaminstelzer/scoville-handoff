@@ -1,5 +1,17 @@
 # Changelog
 
+## v2.0.17 - 2026-09-22
+
+- Recover permitted missing source ranges before rendering a handoff instead
+  of leaving that read to the receiver.
+- Keep an unknown work status unknown. Missing evidence does not mean work
+  has not started.
+
+## v2.0.16 - 2026-09-20
+
+- Clarify the evidence needed for active work without inventing repeat checks
+  for work that is already complete.
+
 ## v2.0.15 - 2026-09-20
 
 - Keep handoff rendering and checking read-only: missing facts remain
