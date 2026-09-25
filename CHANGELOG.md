@@ -1,5 +1,11 @@
 # Changelog
 
+## v2.0.18 - 2026-09-25
+
+- Keep the continuation prompt copyable in one outer Markdown fence, with any nested fences safely contained.
+- Preserve the actual task working directory and inspect version control only when the project uses it.
+- Apply the complete-suite ownership contract in suite installations while keeping standalone Handoff independently usable.
+
 ## v2.0.17 - 2026-09-22
 
 - Recover permitted missing source ranges before rendering a handoff instead

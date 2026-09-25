@@ -1,100 +1,105 @@
 ---
 name: scoville-handoff
-description: Transfer active work to another agent or session as one compact, factual, copy-ready continuation prompt with fixed Receiver Instructions, Objective, State, and Resume Steps. Use only when the user explicitly asks for Scoville Handoff, a compact/context/session handoff, a handoff to a new session, "Übergabe an neue Session", or an equivalent transfer. Preserve objective, decisions, state, ownership, evidence, blockers, hazards, and next safe action. Do not use for summarizing, shortening, wrapping up, ordinary context reduction, low context, or session ending. Read only named task sources and optional version control; run no task or dummy command.
+description: Create one compact, factual continuation prompt for an explicitly requested transfer to another agent or session, including Scoville Handoff or "Übergabe an neue Session". Do not activate for ordinary summaries, shortening, low context, wrapping up, or ending a session.
 compatibility: "Any Agent Skills host that can read the named task sources. Optional read-only version-control inspection (git). No scripts, no network, no subagents. Developed for Codex and Claude Code; other hosts untested."
 ---
 
 # Scoville Handoff
 
-Create the fixed portable artifact only for an explicit transfer.
+Give the receiver enough verified context to continue safely from one copy-ready
+snapshot. An explicit transfer applies even when work is empty, completed or
+not started. Without a transfer request, perform the requested task without a
+handoff. If future reuse is requested but transfer intent is unclear, ask one
+question before reading sources or producing a handoff.
 
-## Dispatch
+## Read within the transfer scope
 
-- `yes`: explicit agent/session transfer; empty, completed, or not-started work
-  stays `yes`.
-- `no`: no receiver transfer. Perform the task; emit no handoff.
-- `ambiguous`: future reuse without a receiver. Ask one question; read nothing
-  and emit no handoff.
+Use task facts already established in the conversation. Additional reads are
+limited to named task sources, optional read-only version-control inspection,
+and the [continuation template](assets/continuation-prompt.md). Throughout this
+workflow, do not advance the task: no edits, builds, tests, probes, dummy or other
+task commands, unrelated reads, stat or list operations, or external effects.
+Missing facts do not authorize additional actions.
 
-## Transfer machine
+For each source, retain its exact path and whether the read was complete,
+partial or failed. Finish a truncated read through its missing range or cursor.
+Retry a failed range once only if the error is plausibly transient. Stop on no
+progress or repeated failure; explicit user read limits take precedence.
+Complete permitted recovery before rendering rather than assigning that read
+to the receiver. After recovery stops or a read limit prevents it, preserve the
+usable facts and record recovery, gaps and unread ranges beside that source.
+A partial source is not wholly unavailable.
 
-For `yes`: `READ -> CAPTURE -> RENDER -> CHECK -> SEND`.
+## Preserve continuation facts
 
-1. **READ:** Read only named task sources and optional read-only version control.
-   RENDER separately requires the named continuation template.
-   Mark each result complete, partial, or failed under its exact source path.
-   Finish a truncated read through the missing range or continuation cursor.
-   Retry a failed range once only for a plausibly transient error. Stop recovery
-   on no progress or repeated failure. Preserve partial facts and name unread
-   ranges. Do not render or send while permitted missing-range recovery remains
-   available; do not delegate that read to the receiver. Render partial facts
-   only after recovery stops or an explicit read limit prevents it.
-   Explicit user read limits take precedence. Record recovery and gaps
-   beside the affected source. No unrelated read, stat, list, probe, edit,
-   external effect, dummy command, or task command is authorized.
-2. **CAPTURE:** Ledger non-secret continuation facts from each usable result,
-   never calling a partial source wholly unavailable. The mandatory set is the
-   goal, deliverable, acceptance, scope and authority, canonical owners,
-   user-owned changes, accepted decisions, active work and running handles,
-   observed evidence and its limits, blockers, hazards, and next safe action.
-   Keep supporting IDs, paths, commits, URLs, commands, errors, quoted decisions,
-   assumptions, unknowns, and time-sensitive details exactly where needed to
-   preserve that set. Omit unrelated history and repetition, not required facts.
-   Never substitute a source name or reread instruction for known material facts.
-   The handoff request is
-   not itself a decision. Use `unknown` or `none known` instead of inference.
-   Omit secret values; retain a needed variable name and mark its value
-   redacted. Runtime CWD, temporary workspace, and host state are not task facts
-   unless the user or a named source supplies them.
-   Under a tight output limit, remove repetition and irrelevant history first,
-   then shorten explanation. Never drop authority, ownership, hazards, evidence
-   limits, or the safe first step. If the mandatory set still cannot fit, report
-   the size conflict and request a larger limit instead of claiming completeness.
-   An explicit lossless request preserves every in-scope non-secret fact, not
-   merely the mandatory set. Conflicting source revisions or material unread
-   ranges remain explicit blockers for receiver verification.
-3. **RENDER:** Copy [the continuation template](assets/continuation-prompt.md) with all H2s and fixed Receiver bullets, then replace its placeholders with captured facts. Under
-   `State`, label every applicable fact; name each source once beside its facts;
-   repeat a fact only for a hazard or first step; omit only empty labels. Render
-   fully even with sparse facts. Use `Status: not_started` only when a source
-   says work has not started; missing status is `unknown`, not `not_started`.
-   Use `none known` for absent known facts, not as proof of absence.
-   Step 1 resolves the first blocker, else
-   recovers in-flight work, else takes the next safe action. Keep the template's
-   Markdown fence so the returned artifact stays copy-ready. Do not run builds,
-   tests, probes, dummy commands, or other task commands to fill a missing fact;
-   render it as `unknown` or `none known` instead.
+Capture the goal, deliverable, acceptance, scope and authority, canonical
+owners, user-owned changes, accepted decisions, active work and running handles,
+observed evidence and its limits, blockers, hazards and next safe action.
+Preserve exact IDs, paths, commits, URLs, commands, errors, quoted decisions,
+assumptions, unknowns and time-sensitive details where needed for continuation.
+Transfer known material facts, not just pointers or instructions to reread them.
+The handoff request itself is not a task decision.
 
-4. **CHECK:** Compare with the ledger: include the complete mandatory set and
-   its exact identifiers and source attribution, every required Objective field,
-   fixed Receiver bullet, and first safe step. For a lossless request, check all
-   in-scope non-secret facts instead. Steps
-   are concrete and end in an observable completion criterion. Active or
-   incompletely accepted work names its decisive next check. Completed work with
-   current evidence names only a state and contradiction reconciliation; never
-   invent a new task or repeat current evidence merely to fill Step 3. No placeholder,
-   secret, invention, or capture-only tool detail remains. Do not run builds,
-   tests, probes, dummy commands, or other task commands during this check;
-   unresolved facts remain `unknown` or `none known`. Failure returns to CAPTURE.
-5. **SEND:** Return exactly the fenced artifact, with nothing outside it. If an
-   explicit size limit prevents safe transfer, return only the concise size
-   conflict and requested limit change instead of an incomplete artifact.
+Use `unknown` for missing information and `none known` when no instances are
+known, such as no known blockers. Neither proves absence. Set `Status:
+not_started` only when the conversation or a named source establishes it;
+otherwise a missing status stays `unknown`. Use the task working directory
+established by the conversation or a named canonical project source. A task
+repository already verified during the work is sufficient; the user need not
+name it again. Runtime CWD alone does not establish the task location. Include
+temporary workspace or host state only when established as task state.
+Conflicting source revisions and material unread ranges remain explicit
+blockers for receiver verification.
+
+Replace every secret value with `[redacted]` before composing any response,
+including warnings, quotations and redaction instructions. Keep a variable name
+when needed, never its secret value.
+
+For a tight output limit, remove repetition and unrelated history first, then
+shorten explanations. Preserve authority, ownership, hazards, evidence limits
+and the safe first step. An explicit lossless request preserves every in-scope
+non-secret fact. If the required content still cannot fit, return only a concise
+size-conflict explanation and request a larger limit.
+
+## Compose and check the prompt
+
+Fill the continuation template, keeping its four H2 sections, fixed Receiver
+Instructions and three Resume Steps. Use one outer Markdown fence with at
+least four backticks and more backticks than any run inside the prompt; match
+its opening and closing length. Include every Objective field. Under State,
+use the template labels only where applicable and name each source once beside
+its facts; identify conversation facts as such. Labels are suggestions, not
+required fields. Always preserve Status and the continuation facts required
+above, including relevant unknowns; omit empty optional categories.
+For file-based work, include `Working directory: unknown` when no task location
+is established. Repeat a fact only when a hazard or first step needs it.
+
+Step 1 resolves the first blocker, otherwise recovers in-flight work, otherwise
+states the next safe action. Make the remaining steps concrete and end with an
+observable completion criterion. Active or incompletely accepted work names its
+decisive next check. For completed work with current evidence, the three steps
+cover only checking current state, reconciling contradictions and confirming
+no material mismatch. Do not invent more work or repeat a current check to fill
+a step.
+
+Compare the full prompt with the captured facts and sources. Check required
+facts, exact identifiers, source attribution, Objective fields, Receiver
+Instructions and the first safe step. For a lossless request, check every
+in-scope non-secret fact. Correct omissions or contradictions before returning
+exactly the fenced artifact, with no surrounding text. Leave no placeholders,
+secrets, invented facts or tool details used only to prepare the snapshot.
 
 Handoff owns the snapshot.
 
-Finding another Skill in this family does not make it installed, active, applicable, or required. If that Skill is absent or inactive, ignore it. Do not require, install, simulate, or reimplement it. If it is active and applicable, let it handle only its stated concern while this Skill continues its own authorized work. An opt-out applies only to the Skill the user excluded, not to independently authorized work.
+This Skill works independently. Other Scoville Skills are optional. Use an
+available, active sibling only for its applicable concern; do not install,
+simulate or require an absent sibling. Honor explicit user exclusions.
 
 Family owners, in suite order:
 
-- `scoville-code-anti-ai-slop`: engineering scope, implementation, risk, and validation.
+- `scoville-code`: engineering scope, implementation, risk, and validation.
 - `scoville-plan`: durable Plans, Work Items, Decisions, and lifecycle state.
-- `scoville-scribe-anti-ai-slop`: wording, terminology, meaning, and source fidelity.
-- `scoville-ui-anti-ai-slop`: framework UI implementation, accessibility mechanics, and rendered proof.
-- `scoville-wordpress-ui-backend-anti-ai-slop`: WordPress plugin-owned wp-admin implementation and UI acceptance.
-- `scoville-design-anti-ai-slop`: visual definition, art direction, critique, and repair.
+- `scoville-ui`: framework UI implementation and acceptance, including supported WordPress admin surfaces.
 - `scoville-handoff`: active-work transfer.
-- `scoville-research`: source-backed research and synthesis.
-- `scoville-brainstorm`: deliberate divergence before selection.
-- `scoville-workflow-for-codex`: explicit Plan execution through native Codex project tasks.
 
 Preserve active sibling state in the snapshot.
