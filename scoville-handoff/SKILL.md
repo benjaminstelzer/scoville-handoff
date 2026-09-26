@@ -11,6 +11,9 @@ snapshot. An explicit transfer applies even when work is empty, completed or
 not started. Without a transfer request, perform the requested task without a
 handoff. If future reuse is requested but transfer intent is unclear, ask one
 question before reading sources or producing a handoff.
+When asked to explain or assess a hypothetical handoff, answer that question.
+Produce the continuation artifact only for a requested transfer of an actual
+task.
 
 ## Read within the transfer scope
 
@@ -38,7 +41,8 @@ observed evidence and its limits, blockers, hazards and next safe action.
 Preserve exact IDs, paths, commits, URLs, commands, errors, quoted decisions,
 assumptions, unknowns and time-sensitive details where needed for continuation.
 Transfer known material facts, not just pointers or instructions to reread them.
-The handoff request itself is not a task decision.
+The handoff request itself is not a task decision. Keep preferences and proposals
+distinct from requirements and accepted decisions.
 
 Use `unknown` for missing information and `none known` when no instances are
 known, such as no known blockers. Neither proves absence. Set `Status:
@@ -66,7 +70,8 @@ size-conflict explanation and request a larger limit.
 Fill the continuation template, keeping its four H2 sections, fixed Receiver
 Instructions and three Resume Steps. Use one outer Markdown fence with at
 least four backticks and more backticks than any run inside the prompt; match
-its opening and closing length. Include every Objective field. Under State,
+its opening and closing length, including when saving the artifact to a file.
+Include every Objective field. Under State,
 use the template labels only where applicable and name each source once beside
 its facts; identify conversation facts as such. Labels are suggestions, not
 required fields. Always preserve Status and the continuation facts required

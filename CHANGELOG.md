@@ -1,5 +1,10 @@
 # Changelog
 
+## v2.0.19 - 2026-09-26
+
+- Separate preferences from accepted requirements and preserve the outer fence in saved handoffs.
+- Distinguish hypothetical handoff advice from an explicitly requested task transfer.
+
 ## v2.0.18 - 2026-09-25
 
 - Keep the continuation prompt copyable in one outer Markdown fence, with any nested fences safely contained.
