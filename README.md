@@ -1,12 +1,12 @@
 # Scoville Handoff
 
-The name comes from the Scoville scale, which originally measured chili heat through dilution.
-Here, the heat is the working context another session needs after a long conversation is condensed.
-
 Continuing a task requires its current blocker, unfinished changes and relevant
 decisions. Scoville Handoff gathers those facts into one compact, copy-ready
 prompt with the objective, permissions and next action, so another session can
 resume the work.
+
+The name comes from the Scoville scale, which originally measured chili heat through dilution.
+Here, the heat is the working context another session needs after a long conversation is condensed.
 
 ## How it works
 
@@ -23,12 +23,12 @@ resume the work.
 - **Preserved authority.** Permissions, file ownership, user changes and
   boundaries on commits, publication or destructive actions remain explicit.
 - **Honest state.** Unobserved results remain unknown. Secrets stay out.
-- **Actionable continuation.** The first Resume Step gives the next safe action;
-  the last defines observable completion.
+- **Actionable continuation.** The first Resume Step gives the next safe action.
+  The last defines how to confirm completion.
 - **A faithful snapshot.** Creating the handoff reads and describes the task
   without editing, testing or advancing it.
 
-The complete contract is in [SKILL.md](https://github.com/benjaminstelzer/scoville-handoff/blob/main/scoville-handoff/SKILL.md).
+The full instructions are in [SKILL.md](https://github.com/benjaminstelzer/scoville-handoff/blob/main/scoville-handoff/SKILL.md).
 
 ## What it costs
 
@@ -38,17 +38,17 @@ The complete contract is in [SKILL.md](https://github.com/benjaminstelzer/scovil
 
 - Transfers between real sessions exposed missing blockers, decisions and ownership of local changes.
 - Project histories, targeted simulations and optimization workflows informed the four-section template and checks for necessary continuation facts.
-- Test results and limitations are retained in the development records.
 
 ## Compatibility
 
-Requires a frontier LLM from the Fable, Astra, SOL or Opus families, version 5.0
-or newer, in an Agent Skills host that can read named task sources. Read-only
+A current Fable, Astra, SOL or Opus model is recommended. Luna was also used
+in testing.
+
+Requires an Agent Skills host that can read named task sources. Read-only
 version-control inspection is optional. Handoff uses no scripts, network or
 subagents.
 
-Developed for Codex and Claude Code. Other hosts are untested. The model
-requirement does not establish successful tests across those model families.
+Developed for Codex and Claude Code. Other hosts are untested.
 
 This Skill works independently. Other Scoville Skills are optional.
 
