@@ -1,40 +1,31 @@
 # Scoville Handoff
 
-The next session needs enough information to continue, not another transcript.
-A long summary can still miss the current blocker, unfinished changes or the
-reason an earlier approach failed.
-
-Scoville Handoff produces one compact continuation prompt with the objective,
-current state, authority and next safe action. It preserves the facts needed
-to resume without quietly advancing or completing the work.
+Continuing a task requires its current blocker, unfinished changes and relevant
+decisions. Scoville Handoff gathers those facts into one compact, copy-ready
+prompt with the objective, permissions and next action, so another session can
+resume the work.
 
 ## How it works
 
-- Use established conversation facts and read named task sources with bounded recovery when a read is incomplete.
-- Capture decisions, ownership, evidence, blockers and hazards without secrets.
-- Organize the result into Receiver Instructions, Objective, State and Resume Steps.
-- Compare the prompt against the captured facts and return one copy-ready block.
-- The receiver checks current state before acting. A tight limit removes repetition before necessary facts.
+- Read conversation facts and named sources, recovering incomplete reads within the user's limits.
+- Capture decisions, ownership, evidence and blockers while excluding secrets.
+- Organize and check one copy-ready prompt with Receiver Instructions, Objective, State and Resume Steps.
+- Preserve necessary facts under length limits. The receiver checks current state before acting.
 
 ## What it enforces
 
-- **Explicit transfer only.** Ordinary summaries and context reduction do not
-  produce a handoff artifact.
-- **One receiver contract.** Every handoff contains Receiver Instructions,
-  Objective, State, and Resume Steps in one copy-ready block.
-- **Facts instead of pointers.** Conversation facts remain available. Named sources are read with targeted recovery
-  for truncation or a transient failure, within explicit user limits. Their material
-  facts enter the artifact so the receiver has them when resuming.
-- **Authority and ownership survive.** Commit, publication, destructive-action,
-  external-effect, file-owner, and dirty-tree boundaries stay explicit.
-- **Unknown stays unknown.** Running or unobserved work never becomes a success
-  claim, and secret values never enter the handoff.
-- **The receiver can act.** Step 1 is the next safe action. The final step names
-  an observable completion result.
-- **Transfer does not advance the task.** Handoff reads the named state but does
-  not edit, test, publish, or otherwise improve it on the way out.
+- **Explicit transfer.** A requested handoff produces one continuation prompt.
+- **Usable context.** Material facts from the conversation and named sources
+  appear in the prompt, including blockers and incomplete work.
+- **Preserved authority.** Permissions, file ownership, user changes and
+  boundaries on commits, publication or destructive actions remain explicit.
+- **Honest state.** Unobserved results remain unknown. Secrets stay out.
+- **Actionable continuation.** The first Resume Step gives the next safe action;
+  the last defines observable completion.
+- **A faithful snapshot.** Creating the handoff reads and describes the task
+  without editing, testing or advancing it.
 
-- The complete contract is in [SKILL.md](https://github.com/benjaminstelzer/scoville-handoff/blob/main/scoville-handoff/SKILL.md).
+The complete contract is in [SKILL.md](https://github.com/benjaminstelzer/scoville-handoff/blob/main/scoville-handoff/SKILL.md).
 
 ## What it costs
 
@@ -42,11 +33,9 @@ to resume without quietly advancing or completing the work.
 
 ## How it was developed
 
-- Handoff grew out of moving real work between sessions and seeing what the next session was missing.
-- A long summary could still omit the current blocker or fail to say which local changes belonged to the user.
-- The [changelog](CHANGELOG.md) traces the move from a large conditional template to four sections built around continuing the work.
-- Real-project histories are analyzed alongside results to identify failures and unnecessary context use.
-- Targeted simulation and optimization workflows inform revisions. Changes are retained only when the required behavior survives.
+- Transfers between real sessions exposed missing blockers, decisions and ownership of local changes.
+- Project histories, targeted simulations and optimization workflows informed the four-section template and checks for necessary continuation facts.
+- Test results and limitations are retained in the development records.
 
 ## Compatibility
 
@@ -58,8 +47,7 @@ subagents.
 Developed for Codex and Claude Code. Other hosts are untested. The model
 requirement does not establish successful tests across those model families.
 
-This Skill works on its own. Other Scoville Skills are optional and handle
-only their own concerns when available and applicable.
+This Skill works independently. Other Scoville Skills are optional.
 
 ## Install
 
