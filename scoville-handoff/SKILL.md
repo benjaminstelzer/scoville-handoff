@@ -35,6 +35,11 @@ A partial source is not wholly unavailable.
 
 ## Preserve continuation facts
 
+Keep the handoff as short as possible and only as long as necessary. Necessary
+facts let the receiver continue correctly without hidden context. Select the
+relevant continuation facts below; omit repetition and history that no longer
+affects the remaining work.
+
 Capture the goal, deliverable, acceptance, scope and authority, canonical
 owners, user-owned changes, accepted decisions, active work and running handles,
 observed evidence and its limits, blockers, hazards and next safe action.

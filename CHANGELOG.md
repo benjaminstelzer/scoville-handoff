@@ -1,5 +1,9 @@
 # Changelog
 
+## v2.0.20 - 2026-09-27
+
+- Keep continuation prompts focused on the current state, binding constraints, evidence limits and next action.
+
 ## v2.0.19 - 2026-09-26
 
 - Separate preferences from accepted requirements and preserve the outer fence in saved handoffs.
