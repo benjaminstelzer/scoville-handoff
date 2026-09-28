@@ -1,5 +1,9 @@
 # Changelog
 
+## v2.0.21 - 2026-09-28
+
+- Clarify the README presentation and keep the name explanation once per package.
+
 ## v2.0.20 - 2026-09-27
 
 - Keep continuation prompts focused on the current state, binding constraints, evidence limits and next action.
