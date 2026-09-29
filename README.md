@@ -53,8 +53,6 @@ subagents.
 
 Developed for Codex and Claude Code. Other hosts haven't been tested.
 
-It works on its own. The other Scoville Skills are optional.
-
 This Skill works independently. Other Scoville Skills are optional.
 
 ## Install
