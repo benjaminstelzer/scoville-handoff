@@ -5,7 +5,8 @@ decisions. Scoville Handoff gathers those facts into one compact, copy-ready
 prompt with the objective, permissions and next action, so another session can
 resume the work.
 
-Here, the heat is the working context another session needs after a long conversation is condensed.
+The heat, in this case, is the working context another session still needs
+once a long conversation has been condensed.
 
 ## How it works
 
@@ -17,15 +18,16 @@ Here, the heat is the working context another session needs after a long convers
 ## What it enforces
 
 - **Explicit transfer.** A requested handoff produces one continuation prompt.
-- **Usable context.** Material facts from the conversation and named sources
-  appear in the prompt, including blockers and incomplete work.
-- **Preserved authority.** Permissions, file ownership, user changes and
-  boundaries on commits, publication or destructive actions remain explicit.
-- **Honest state.** Unobserved results remain unknown. Secrets stay out.
-- **Actionable continuation.** The first Resume Step gives the next safe action.
-  The last defines how to confirm completion.
-- **A faithful snapshot.** Creating the handoff reads and describes the task
-  without editing, testing or advancing it.
+- **Usable context.** Important facts from the conversation and named sources
+  end up in the prompt, including blockers and unfinished work.
+- **Preserved authority.** Permissions, file ownership, your own changes and
+  limits on commits, publishing or destructive actions stay explicit.
+- **Honest state.** Results nobody observed stay marked as unknown. Secrets
+  stay out.
+- **Actionable continuation.** The first Resume Step gives the next safe
+  action. The last says how to confirm the work is complete.
+- **A faithful snapshot.** Creating the handoff only reads and describes the
+  task. It doesn't edit, test or move it forward.
 
 The full instructions are in [SKILL.md](https://github.com/benjaminstelzer/scoville-handoff/blob/main/scoville-handoff/SKILL.md).
 
@@ -35,19 +37,23 @@ The full instructions are in [SKILL.md](https://github.com/benjaminstelzer/scovi
 
 ## How it was developed
 
-- Transfers between real sessions exposed missing blockers, decisions and ownership of local changes.
-- Project histories, targeted simulations and optimization workflows informed the four-section template and checks for necessary continuation facts.
+- Handoffs between real sessions showed what tends to get lost: blockers,
+  decisions and who owns local changes.
+- Project histories, targeted simulations and optimization runs shaped the
+  four-section template and the checks for facts a continuation needs.
 
 ## Compatibility
 
 A current Fable, Astra, SOL or Opus model is recommended. Luna was also used
 in testing.
 
-Requires an Agent Skills host that can read named task sources. Read-only
-version-control inspection is optional. Handoff uses no scripts, network or
+The host needs to be able to read the task sources you name. Read-only access
+to version control is optional. Handoff uses no scripts, no network and no
 subagents.
 
-Developed for Codex and Claude Code. Other hosts are untested.
+Developed for Codex and Claude Code. Other hosts haven't been tested.
+
+It works on its own. The other Scoville Skills are optional.
 
 This Skill works independently. Other Scoville Skills are optional.
 
@@ -55,7 +61,7 @@ This Skill works independently. Other Scoville Skills are optional.
 
 ### Install this Skill
 
-This standalone package works independently. Ask your compatible agent host:
+This package works on its own. Ask your agent host:
 
 ```text
 Install this Skill for all my projects from this exact package directory:
@@ -64,14 +70,14 @@ Preserve personal settings and unrelated Skills. Report the installed location
 and whether the host discovers the Skill.
 ```
 
-The host needs permission to write to its Skills directory. See the
-[Codex Skills guide](https://learn.chatgpt.com/docs/build-skills) or the
+The host needs permission to write to its Skills directory. The
+[Codex Skills guide](https://learn.chatgpt.com/docs/build-skills) and the
 [Claude Code Skills guide](https://code.claude.com/docs/en/skills)
-for host-specific locations.
+list the locations for each host.
 
 ### Install the complete Scoville suite
 
-Get the complete suite from the
+The complete suite is in the
 [Scoville Suite monorepo](https://github.com/benjaminstelzer/scoville-suite).
 Install its released Skill packages, not development templates.
 
@@ -102,10 +108,10 @@ The name comes from the Scoville scale, which originally measured chili heat thr
 
 ## Family
 
-- [Code](https://github.com/benjaminstelzer/scoville-code) owns engineering scope, implementation, risk, and validation.
-- [Plan](https://github.com/benjaminstelzer/scoville-plan) owns durable Plans, Work Items, Decisions, and lifecycle state.
-- [UI](https://github.com/benjaminstelzer/scoville-ui) owns UI implementation, information structure, accessibility and rendered evidence, with a conditional WordPress adapter.
-- [Handoff](https://github.com/benjaminstelzer/scoville-handoff) transfers active work to another agent or session.
+- [Code](https://github.com/benjaminstelzer/scoville-code) covers engineering scope, implementation, risk and validation.
+- [Plan](https://github.com/benjaminstelzer/scoville-plan) keeps Plans, Work Items, Decisions and their status in the repository.
+- [UI](https://github.com/benjaminstelzer/scoville-ui) covers UI implementation, information structure, accessibility and rendered checks, with an optional WordPress adapter.
+- [Handoff](https://github.com/benjaminstelzer/scoville-handoff) passes active work to another agent or session.
 
 ## License
 

@@ -1,6 +1,6 @@
 ---
 name: scoville-handoff
-description: Create one compact, factual continuation prompt for an explicitly requested transfer to another agent or session, including Scoville Handoff or "Übergabe an neue Session". Do not activate for ordinary summaries, shortening, low context, wrapping up, or ending a session.
+description: Create one compact, factual continuation prompt for an explicitly requested transfer to another agent or session, including Scoville Handoff or "handoff to a new session". Do not activate for ordinary summaries, shortening, low context, wrapping up, or ending a session.
 compatibility: "Any Agent Skills host that can read the named task sources. Optional read-only version-control inspection (git). No scripts, no network, no subagents. Developed for Codex and Claude Code; other hosts untested."
 ---
 
