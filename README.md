@@ -43,6 +43,10 @@ The full instructions are in [SKILL.md](https://github.com/benjaminstelzer/scovi
 - Project histories, targeted simulations and optimization runs shaped the
   four-section template and the checks for facts a continuation needs.
 
+In one targeted GPT-6 Luna High repeat, a preference became a requirement.
+Check that distinction when continuing from a generated handoff. A later test
+has not disproved this observation.
+
 ## Compatibility
 
 Requires a frontier model from the Fable, Astra, SOL or Opus families,

@@ -1,5 +1,13 @@
 # Changelog
 
+## v2.0.23 - 2026-10-01
+
+- Preserve the observed Luna High limit from the earlier releases when replacing their release notes.
+
+### Known limits
+
+One targeted GPT-6 Luna High repeat still promoted a preference to a requirement. Check that distinction when continuing from a generated handoff. This observation was recorded with v2.0.20 and v2.0.21. It has not been disproved by a later test.
+
 ## v2.0.22 - 2026-10-01
 
 - Include Project Context Cleanup among the active sibling owners whose state and pending work a continuation preserves.
