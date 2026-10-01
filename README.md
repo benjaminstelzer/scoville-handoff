@@ -5,8 +5,9 @@ decisions. Scoville Handoff gathers those facts into one compact, copy-ready
 prompt with the objective, permissions and next action, so another session can
 resume the work.
 
-The heat, in this case, is the working context another session still needs
-once a long conversation has been condensed.
+The name comes from the Scoville scale, which originally measured chili heat
+through dilution. The heat, in this case, is the working context another
+session still needs once a long conversation has been condensed.
 
 ## How it works
 
@@ -44,8 +45,8 @@ The full instructions are in [SKILL.md](https://github.com/benjaminstelzer/scovi
 
 ## Compatibility
 
-A current Fable, Astra, SOL or Opus model is recommended. Luna was also used
-in testing.
+Requires a frontier model from the Fable, Astra, SOL or Opus families,
+version 5.0 or newer. Luna was also used in testing.
 
 The host needs to be able to read the task sources you name. Read-only access
 to version control is optional. Handoff uses no scripts, no network and no
@@ -59,7 +60,7 @@ This Skill works independently. Other Scoville Skills are optional.
 
 ### Install this Skill
 
-This package works on its own. Ask your agent host:
+Ask your agent host:
 
 ```text
 Install this Skill for all my projects from this exact package directory:
@@ -89,8 +90,6 @@ Use Scoville Handoff to transfer this active task to a new session. Include the 
 Create a compact handoff for another agent. Preserve the objective, decisions, changed files, blockers and next action. Do not continue the work.
 ```
 
-The name comes from the Scoville scale, which originally measured chili heat through dilution.
-
 ## Sources
 
 - Compact Handoff `v1.0.0` for explicit activation, snapshot freshness, secret
@@ -110,6 +109,7 @@ The name comes from the Scoville scale, which originally measured chili heat thr
 - [Plan](https://github.com/benjaminstelzer/scoville-plan) keeps Plans, Work Items, Decisions and their status in the repository.
 - [UI](https://github.com/benjaminstelzer/scoville-ui) covers UI implementation, information structure, accessibility and rendered checks, with an optional WordPress adapter.
 - [Handoff](https://github.com/benjaminstelzer/scoville-handoff) passes active work to another agent or session.
+- [Project Context Cleanup](https://github.com/benjaminstelzer/scoville-suite) keeps requested project rules and index text concise without losing required context.
 
 ## License
 

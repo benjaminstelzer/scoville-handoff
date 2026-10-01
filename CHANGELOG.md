@@ -1,5 +1,9 @@
 # Changelog
 
+## v2.0.22 - 2026-10-01
+
+- Include Project Context Cleanup among the active sibling owners whose state and pending work a continuation preserves.
+
 ## v2.0.21 - 2026-09-28
 
 - Clarify the README presentation and keep the name explanation once per package.

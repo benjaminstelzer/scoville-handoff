@@ -111,5 +111,6 @@ Family owners, in suite order:
 - `scoville-plan`: durable Plans, Work Items, Decisions, and lifecycle state.
 - `scoville-ui`: framework UI implementation and acceptance, including supported WordPress admin surfaces.
 - `scoville-handoff`: active-work transfer.
+- `scoville-project-context-cleanup`: requested project-rule and index wording, information quality and structure.
 
 Preserve active sibling state in the snapshot.
