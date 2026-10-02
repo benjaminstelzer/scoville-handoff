@@ -1,62 +1,57 @@
 # Scoville Handoff
 
-Continuing a task requires its current blocker, unfinished changes and relevant
-decisions. Scoville Handoff gathers those facts into one compact, copy-ready
-prompt with the objective, permissions and next action, so another session can
-resume the work.
+Scoville Handoff turns the current task into one copy-ready continuation
+prompt: the goal, decisions, unfinished work, blockers and next action.
+Another session can pick up the work without asking you to explain it all again.
 
-The name comes from the Scoville scale, which originally measured chili heat
-through dilution. The heat, in this case, is the working context another
-session still needs once a long conversation has been condensed.
+Scoville measures chili heat. Handoff keeps the useful context from being
+diluted between conversations. The next agent already has enough imagination.
 
 ## How it works
 
-- Read conversation facts and named sources, recovering incomplete reads within the user's limits.
-- Capture decisions, ownership, evidence and blockers while excluding secrets.
-- Organize and check one copy-ready prompt with Receiver Instructions, Objective, State and Resume Steps.
-- Preserve necessary facts under length limits. The receiver checks current state before acting.
+- Read the conversation and the task sources already named or established.
+- Capture the facts needed to resume, including permissions and unfinished work.
+- Produce one prompt in the requested language, otherwise the conversation
+  language. The receiving agent checks current state before acting.
 
 ## What it enforces
 
-- **Explicit transfer.** A requested handoff produces one continuation prompt.
-- **Usable context.** Important facts from the conversation and named sources
-  end up in the prompt, including blockers and unfinished work.
-- **Preserved authority.** Permissions, file ownership, your own changes and
-  limits on commits, publishing or destructive actions stay explicit.
-- **Honest state.** Results nobody observed stay marked as unknown. Secrets
-  stay out.
-- **Actionable continuation.** The first Resume Step gives the next safe
-  action. The last says how to confirm the work is complete.
-- **A faithful snapshot.** Creating the handoff only reads and describes the
-  task. It doesn't edit, test or move it forward.
+- **Explicit transfer.** A handoff starts when you request one. Preparing it is
+  read-only and does not advance the task.
+- **Faithful context.** Decisions, permissions, ownership and blockers survive
+  the transfer. Unknown results stay unknown, and secrets stay out.
+- **A useful next action.** The prompt tells the next session where to resume
+  and how to recognize completion.
 
-The full instructions are in [SKILL.md](https://github.com/benjaminstelzer/scoville-handoff/blob/main/scoville-handoff/SKILL.md).
+A targeted GPT-6 Luna High test turned a preference into a requirement. Check
+that distinction in a generated handoff. Later testing has not disproved the
+observation.
+
+See the [full instructions](https://github.com/benjaminstelzer/scoville-handoff/blob/main/scoville-handoff/SKILL.md).
 
 ## What it costs
 
-- Reading the task state and preparing the handoff use additional tokens and time.
+- Preparing the prompt takes tokens and time once, so the next session has less context to reconstruct.
 
 ## How it was developed
 
-- Handoffs between real sessions showed what tends to get lost: blockers,
-  decisions and who owns local changes.
-- Project histories, targeted simulations and optimization runs shaped the
-  four-section template and the checks for facts a continuation needs.
-
-In one targeted GPT-6 Luna High repeat, a preference became a requirement.
-Check that distinction when continuing from a generated handoff. A later test
-has not disproved this observation.
+Real transfers exposed lost blockers, decisions and ownership of unfinished
+changes. Those cases shaped a compact template that preserves what the next
+session needs to continue.
 
 ## Compatibility
 
 Requires a frontier model from the Fable, Astra, SOL or Opus families,
-version 5.0 or newer. Luna was also used in testing.
+version 5.0 or newer. This requirement does not establish test coverage for
+each family. Targeted GPT-6 Luna High testing found the preference-to-requirement
+error described above.
 
-The host needs to be able to read the task sources you name. Read-only access
-to version control is optional. Handoff uses no scripts, no network and no
-subagents.
+The host needs to read sources named or already established for the task.
+Read-only access to version control is optional. Handoff uses no scripts,
+no network and no subagents.
 
-Developed for Codex and Claude Code. Other hosts haven't been tested.
+Developed for Codex and Claude Code. This states the intended hosts, not evidence
+of equivalent test coverage on both. Other hosts haven't been tested.
 
 This Skill works independently. Other Scoville Skills are optional.
 

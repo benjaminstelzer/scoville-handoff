@@ -1,20 +1,20 @@
 # Changelog
 
-## v2.0.23 - 2026-10-01
+## v2.0.24 - 2026-10-02
 
-- Preserve the observed Luna High limit from the earlier releases when replacing their release notes.
+- Write the handoff in the requested language, otherwise the conversation language.
+- Include task sources already named or established, while keeping source data distinct from accepted decisions.
+- Finish already authorized record updates with their owner before preparing the read-only handoff.
+
+## v2.0.23 - 2026-10-01
 
 ### Known limits
 
-One targeted GPT-6 Luna High repeat still promoted a preference to a requirement. Check that distinction when continuing from a generated handoff. This observation was recorded with v2.0.20 and v2.0.21. It has not been disproved by a later test.
+One targeted GPT-6 Luna High repeat still promoted a preference to a requirement. Check that distinction when continuing from a generated handoff. This limit remains unresolved by later testing.
 
 ## v2.0.22 - 2026-10-01
 
 - Include Project Context Cleanup among the active sibling owners whose state and pending work a continuation preserves.
-
-## v2.0.21 - 2026-09-28
-
-- Clarify the README presentation and keep the name explanation once per package.
 
 ## v2.0.20 - 2026-09-27
 
@@ -56,8 +56,6 @@ One targeted GPT-6 Luna High repeat still promoted a preference to a requirement
 
 ## v2.0.14 - 2026-09-19
 
-- Copy the continuation record from a packaged template instead of embedding a
-  nested fenced template in the core instructions.
 - State the complete eight-Skill ownership boundary in suite order while
   keeping every sibling optional and independently activated.
 

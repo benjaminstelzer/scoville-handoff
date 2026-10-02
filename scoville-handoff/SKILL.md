@@ -1,27 +1,33 @@
 ---
 name: scoville-handoff
 description: Create one compact, factual continuation prompt for an explicitly requested transfer to another agent or session, including Scoville Handoff or "handoff to a new session". Do not activate for ordinary summaries, shortening, low context, wrapping up, or ending a session.
-compatibility: "Any Agent Skills host that can read the named task sources. Optional read-only version-control inspection (git). No scripts, no network, no subagents. Developed for Codex and Claude Code; other hosts untested."
+compatibility: "Any Agent Skills host that can read explicitly named or already established task sources. Optional read-only version-control inspection (git). No scripts, no network, no subagents. Developed for Codex and Claude Code; other hosts untested."
 ---
 
 # Scoville Handoff
 
-Give the receiver enough verified context to continue safely from one copy-ready
-snapshot. An explicit transfer applies even when work is empty, completed or
-not started. Without a transfer request, perform the requested task without a
-handoff. If future reuse is requested but transfer intent is unclear, ask one
-question before reading sources or producing a handoff.
+Give the receiver accurately labeled context to continue safely from one
+copy-ready snapshot. An explicit transfer applies even when work is empty,
+completed or not started. Without a transfer request, perform the requested
+task without a handoff. If future reuse is requested but transfer intent is
+unclear, ask one question before reading sources or producing a handoff.
 When asked to explain or assess a hypothetical handoff, answer that question.
 Produce the continuation artifact only for a requested transfer of an actual
 task.
 
 ## Read within the transfer scope
 
+Any already required and authorized pre-transfer update belongs to its active
+owner, such as Plan for Step status, and must finish before Handoff starts.
+The transfer request grants no additional editing authority.
+
 Use task facts already established in the conversation. Additional reads are
-limited to named task sources, optional read-only version-control inspection,
-and the [continuation template](assets/continuation-prompt.md). Throughout this
-workflow, do not advance the task: no edits, builds, tests, probes, dummy or other
-task commands, unrelated reads, stat or list operations, or external effects.
+limited to sources explicitly named or already established as task sources in
+the conversation, optional read-only version-control inspection, and the
+[continuation template](assets/continuation-prompt.md). Do not search for more
+sources. Throughout this workflow, do not advance the task: no edits, builds,
+tests, probes, dummy or other task commands, unrelated reads, stat or list
+operations, or external effects.
 Missing facts do not authorize additional actions.
 
 For each source, retain its exact path and whether the read was complete,
@@ -32,6 +38,8 @@ Complete permitted recovery before rendering rather than assigning that read
 to the receiver. After recovery stops or a read limit prevents it, preserve the
 usable facts and record recovery, gaps and unread ranges beside that source.
 A partial source is not wholly unavailable.
+Conflicting source revisions and material unread ranges remain explicit
+blockers for receiver verification.
 
 ## Preserve continuation facts
 
@@ -51,14 +59,17 @@ distinct from requirements and accepted decisions.
 
 Use `unknown` for missing information and `none known` when no instances are
 known, such as no known blockers. Neither proves absence. Set `Status:
-not_started` only when the conversation or a named source establishes it;
-otherwise a missing status stays `unknown`. Use the task working directory
-established by the conversation or a named canonical project source. A task
-repository already verified during the work is sufficient; the user need not
-name it again. Runtime CWD alone does not establish the task location. Include
-temporary workspace or host state only when established as task state.
-Conflicting source revisions and material unread ranges remain explicit
-blockers for receiver verification.
+not_started` only when the conversation or an explicitly named or already
+established task source establishes it; otherwise a missing status stays
+`unknown`.
+
+For file-based work, use the task working directory established by the
+conversation or an explicitly named or already established canonical project
+source. A task repository already verified during the work is sufficient; the
+user need not name it again. If no task location is established, include
+`Working directory: unknown`. Runtime CWD alone does not establish the task
+location. Include temporary workspace or host state only when established as
+task state.
 
 Replace every secret value with `[redacted]` before composing any response,
 including warnings, quotations and redaction instructions. Keep a variable name
@@ -72,17 +83,19 @@ size-conflict explanation and request a larger limit.
 
 ## Compose and check the prompt
 
-Fill the continuation template, keeping its four H2 sections, fixed Receiver
-Instructions and three Resume Steps. Use one outer Markdown fence with at
-least four backticks and more backticks than any run inside the prompt; match
-its opening and closing length, including when saving the artifact to a file.
-Include every Objective field. Under State,
-use the template labels only where applicable and name each source once beside
-its facts; identify conversation facts as such. Labels are suggestions, not
-required fields. Always preserve Status and the continuation facts required
-above, including relevant unknowns; omit empty optional categories.
-For file-based work, include `Working directory: unknown` when no task location
-is established. Repeat a fact only when a hazard or first step needs it.
+Fill the continuation template, keeping its four H2 sections, the meaning of
+every Receiver Instruction and three Resume Steps. Use the user's requested
+output language, otherwise the conversation language. Translate headings,
+labels and Receiver Instructions consistently; preserve technical identifiers,
+literal markers such as `unknown`, and exact quotations except secret values.
+Use one outer Markdown fence with at least four backticks and more backticks
+than any run inside the prompt; match its opening and closing length, including
+when saving the artifact to a file.
+Include every Objective field. Under State, always preserve Status and the
+required continuation facts, including relevant unknowns. Other template labels
+are optional; omit empty or inapplicable categories. Name each source once beside
+its facts and identify conversation facts as such. Repeat a fact only when a
+hazard or first step needs it.
 
 Step 1 resolves the first blocker, otherwise recovers in-flight work, otherwise
 states the next safe action. Make the remaining steps concrete and end with an
