@@ -1,7 +1,7 @@
 ---
 name: scoville-handoff
-description: Create one compact, factual continuation prompt for an explicitly requested transfer to another agent or session, including Scoville Handoff or "handoff to a new session". Do not activate for ordinary summaries, shortening, low context, wrapping up, or ending a session.
-compatibility: "Any Agent Skills host that can read explicitly named or already established task sources. Optional read-only version-control inspection (git). No scripts, no network, no subagents. Developed for Codex and Claude Code; other hosts untested."
+description: Create a factual continuation prompt for an explicitly requested transfer to another agent or session, including Scoville Handoff or "handoff to a new session". Ordinary Plan maintenance belongs to Plan. Do not activate for ordinary summaries, shortening, low context, wrapping up, or ending a session.
+compatibility: "Agent Skills host that can read established task sources. Optional read-only Git inspection. No network or subagents. Developed for Codex and Claude Code; other hosts untested. Python 3.11+ for the bundled text-size checker; manual fallback only without suitable Python. Helper errors do not enable fallback."
 ---
 
 # Scoville Handoff
@@ -28,7 +28,10 @@ the conversation, optional read-only version-control inspection, and the
 sources. Throughout this workflow, do not advance the task: no edits, builds,
 tests, probes, dummy or other task commands, unrelated reads, stat or list
 operations, or external effects.
-Missing facts do not authorize additional actions.
+Missing facts do not authorize additional actions. Only for preparing and
+delivering this handoff, interpreter discovery, temporary artifact writes,
+size checks and complete-file publication are permitted. This exception
+grants no task edits, tests or other task commands.
 
 For each source, retain its exact path and whether the read was complete,
 partial or failed. Finish a truncated read through its missing range or cursor.
@@ -43,10 +46,9 @@ blockers for receiver verification.
 
 ## Preserve continuation facts
 
-Keep the handoff as short as possible and only as long as necessary. Necessary
-facts let the receiver continue correctly without hidden context. Select the
-relevant continuation facts below; omit repetition and history that no longer
-affects the remaining work.
+Read the [shared writing rules](references/writing.md) when composing the
+continuation prompt. They govern wording, not permission to read more task
+sources. Select the relevant continuation facts below.
 
 Capture the goal, deliverable, acceptance, scope and authority, canonical
 owners, user-owned changes, accepted decisions, active work and running handles,
@@ -72,19 +74,24 @@ location. Include temporary workspace or host state only when established as
 task state.
 
 Replace every secret value with `[redacted]` before composing any response,
-including warnings, quotations and redaction instructions. Keep a variable name
-when needed, never its secret value.
+including warnings, quotations and redaction instructions. For each established
+secret-bearing variable in scope, retain its name with `[redacted]` as the value;
+never omit its name merely because the value is secret.
 
 For a tight output limit, remove repetition and unrelated history first, then
 shorten explanations. Preserve authority, ownership, hazards, evidence limits
 and the safe first step. An explicit lossless request preserves every in-scope
-non-secret fact. If the required content still cannot fit, return only a concise
-size-conflict explanation and request a larger limit.
+non-secret fact. If required content still cannot fit, publish the complete
+unchanged fenced artifact through the shared complete-file route. Return its
+absolute path, SHA-256 and an instruction to verify the hash and read the
+entire file before continuing.
 
 ## Compose and check the prompt
 
 Fill the continuation template, keeping its four H2 sections, the meaning of
-every Receiver Instruction and three Resume Steps. Use the user's requested
+every Receiver Instruction and three Resume Steps. Keep the template's
+Receiver Instructions intact apart from translation and secret redaction;
+they are required instructions, not optional State labels. Use the user's requested
 output language, otherwise the conversation language. Translate headings,
 labels and Receiver Instructions consistently; preserve technical identifiers,
 literal markers such as `unknown`, and exact quotations except secret values.
@@ -98,7 +105,9 @@ its facts and identify conversation facts as such. Repeat a fact only when a
 hazard or first step needs it.
 
 Step 1 resolves the first blocker, otherwise recovers in-flight work, otherwise
-states the next safe action. Make the remaining steps concrete and end with an
+states the next safe action. If the goal is unknown, or the acceptance is unknown
+and the next action depends on it, Step 1 asks for it before recovering a running
+command. Make the remaining steps concrete and end with an
 observable completion criterion. Active or incompletely accepted work names its
 decisive next check. For completed work with current evidence, the three steps
 cover only checking current state, reconciling contradictions and confirming
@@ -109,7 +118,8 @@ Compare the full prompt with the captured facts and sources. Check required
 facts, exact identifiers, source attribution, Objective fields, Receiver
 Instructions and the first safe step. For a lossless request, check every
 in-scope non-secret fact. Correct omissions or contradictions before returning
-exactly the fenced artifact, with no surrounding text. Leave no placeholders,
+exactly the fenced artifact with no surrounding text, or the specified path,
+hash and reading instruction for complete-file delivery. Leave no placeholders,
 secrets, invented facts or tool details used only to prepare the snapshot.
 
 Handoff owns the snapshot.
@@ -127,3 +137,20 @@ Family owners, in suite order:
 - `scoville-project-context-cleanup`: requested project-rule and index wording, information quality and structure.
 
 Preserve active sibling state in the snapshot.
+
+Reuse an already verified Python 3.11+ interpreter. Otherwise check `py -3`
+on Windows or `python3` elsewhere; try `python` if needed. Choose it locally,
+without asking the user. Use that executable for the `python` examples.
+Report a missing runtime only when no suitable installed interpreter is found.
+
+## Runtime helpers
+
+Use the bundled helpers for their operations. Read their invocation instructions,
+not their source, unless diagnosing a failure.
+Only when Python is unavailable, load the matching optional reference below.
+Missing scripts, missing dependencies or helper errors stop the operation;
+they never enable the manual route. Do not load these references otherwise.
+
+| Helper | Optional no-Python reference |
+| --- | --- |
+| `scripts/check_text_size.py` | [check_text_size](references/fallbacks/check_text_size-fallback.md) |

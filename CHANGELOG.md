@@ -1,5 +1,11 @@
 # Changelog
 
+## v2.1.0 - 2026-10-07
+
+- Preserve the complete continuation through compaction or a hashed temporary file when it exceeds the known output limit. Ask the recipient to read that file before continuing.
+- Ask about unknown acceptance only when the next action depends on it. An unknown goal still blocks a usable handoff.
+- Follow the applicable Codex or Claude Code project rules and keep preferences distinct from binding requirements.
+
 ## v2.0.24 - 2026-10-02
 
 - Write the handoff in the requested language, otherwise the conversation language.

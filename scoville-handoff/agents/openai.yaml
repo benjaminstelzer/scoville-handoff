@@ -1,4 +1,4 @@
 interface:
   display_name: "Scoville Handoff"
-  short_description: "Transfers the work state, not the whole conversation"
-  default_prompt: "Use $scoville-handoff to create a copy-ready continuation prompt for this active task."
+  short_description: "Create a continuation prompt for an explicit task transfer"
+  default_prompt: "Use $scoville-handoff to create a copy-ready continuation prompt for this task."
