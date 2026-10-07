@@ -1,5 +1,9 @@
 # Changelog
 
+## v2.1.1 - 2026-10-07
+
+- Check complete text before large reads and preserve Python launcher arguments when invoking the size checker. Keep continuation records limited to facts needed for the next work.
+
 ## v2.1.0 - 2026-10-07
 
 - Preserve the complete continuation through compaction or a hashed temporary file when it exceeds the known output limit. Ask the recipient to read that file before continuing.
