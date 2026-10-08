@@ -1,5 +1,9 @@
 # Changelog
 
+## v2.1.4 - 2026-10-08
+
+- Diagnose shortened output from the observed failing layer; a later shortened query does not prove that the original capture lost information.
+
 ## v2.1.3 - 2026-10-08
 
 - Read complete transfer inputs with an explicit document reader and keep command status separate from output completeness.
