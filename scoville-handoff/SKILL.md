@@ -33,18 +33,21 @@ delivering this handoff, interpreter discovery, temporary artifact writes,
 size checks and complete-file publication are permitted. This exception
 grants no task edits, tests or other task commands.
 
-For each source, retain its exact path and whether the read was complete,
-partial or failed. Read permitted partial sources through ordered ranges or
-cursors within their limits; never attempt an oversized read or rely on
-retrieving text after truncation.
-Retry a failed range once only if the error is plausibly transient. Stop on no
-progress or repeated failure; explicit user read limits take precedence.
-Complete permitted recovery before rendering rather than assigning that read
-to the receiver. After recovery stops or a read limit prevents it, preserve the
-usable facts and record recovery, gaps and unread ranges beside that source.
-A partial source is not wholly unavailable.
-Conflicting source revisions and material unread ranges remain explicit
-blockers for receiver verification.
+Retain each source's exact path and read state:
+
+| Read state | Action |
+| --- | --- |
+| Complete | Use the established facts. |
+| Partial | Read permitted ordered ranges or cursors within their limits. Never attempt an oversized read or recover text after truncation. |
+| Failed range, plausibly transient | Retry that range once; explicit user read limits prevail. |
+| No progress, repeated failure or read limit | Stop recovery. Preserve usable facts, recovery, gaps and unread ranges beside the source. A partial source is not wholly unavailable. |
+
+1. Finish the permitted recovery sequence before composing, including stopping
+   when the table requires it; do not defer these attempts to the receiver.
+2. Compose the snapshot from usable facts, preserving each source's read state,
+   recovery, gaps and unread ranges. Never label a partial source complete.
+3. Conflicting source revisions and material unread ranges block receiver
+   verification and actions that depend on them, not snapshot creation.
 
 ## Preserve continuation facts
 
@@ -106,23 +109,29 @@ are optional; omit empty or inapplicable categories. Name each source once besid
 its facts and identify conversation facts as such. Repeat a fact only when a
 hazard or first step needs it.
 
-Step 1 resolves the first blocker, otherwise recovers in-flight work, otherwise
-states the next safe action. If the goal is unknown, or the acceptance is unknown
-and the next action depends on it, Step 1 asks for it before recovering a running
-command. Make the remaining steps concrete and end with an
+Choose Resume Step 1 in this priority order:
+
+| Condition | First step |
+| --- | --- |
+| Goal unknown, or Acceptance unknown and next action depends on it | Ask before execution or recovering a running command. |
+| Known blocker | Resolve the first blocker. |
+| In-flight work | Recover its state. |
+| Otherwise | Take the next safe action. |
+
+Make the remaining steps concrete and end with an
 observable completion criterion. Active or incompletely accepted work names its
 decisive next check. For completed work with current evidence, the three steps
 cover only checking current state, reconciling contradictions and confirming
 no material mismatch. Do not invent more work or repeat a current check to fill
 a step.
 
-Compare the full prompt with the captured facts and sources. Check required
-facts, exact identifiers, source attribution, Objective fields, Receiver
-Instructions and the first safe step. For a lossless request, check every
-in-scope non-secret fact. Correct omissions or contradictions before returning
-exactly the fenced artifact with no surrounding text, or the specified path,
-hash and reading instruction for complete-file delivery. Leave no placeholders,
-secrets, invented facts or tool details used only to prepare the snapshot.
+1. Compare the full prompt with captured facts and sources: required facts,
+   exact identifiers, attribution, Objective fields, Receiver Instructions and
+   first safe step. For lossless requests, check every in-scope non-secret fact.
+2. Correct omissions and contradictions; remove placeholders, secrets, invented
+   facts and tool details used only to prepare the snapshot.
+3. Return exactly the fenced artifact without surrounding text, or the specified
+   path, hash and complete reading instruction for file delivery.
 
 Handoff owns the snapshot; preserve active sibling state in it.
 
@@ -178,9 +187,12 @@ Without suitable Python 3.11+, first read only the check_text_size reference bel
 a native UTF-8 reader and ordered unchanged parts, measuring each complete
 output including labels before display against `floor(limit * 4 / 5)` bytes.
 With no limit, read it completely. Without a safe reader, stop dependent work.
-Only when suitable Python 3.11+ is unavailable, load the matching optional reference below.
-Missing scripts, missing dependencies or helper errors stop the operation;
-they never enable the manual route. Do not load these references otherwise.
+
+| Condition | Required route |
+| --- | --- |
+| Suitable Python 3.11+ is available | Use the bundled helper; do not load manual references. |
+| No suitable Python 3.11+ | Read only the matching optional reference below. |
+| Missing script, missing dependency or helper error | Stop the affected operation; this never enables the manual route. |
 
 | Helper | Optional no-Python reference |
 | --- | --- |
