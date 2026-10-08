@@ -1,5 +1,9 @@
 # Changelog
 
+## v2.1.6 - 2026-10-08
+
+- Create usable snapshots after the permitted recovery sequence, preserving unread ranges and gaps. Missing required facts still block dependent receiver actions.
+
 ## v2.1.5 - 2026-10-08
 
 - Clarify the shared writing and document-reading instructions so the next action and its prerequisites are easier to identify.
