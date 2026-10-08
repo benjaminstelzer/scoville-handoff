@@ -34,7 +34,9 @@ size checks and complete-file publication are permitted. This exception
 grants no task edits, tests or other task commands.
 
 For each source, retain its exact path and whether the read was complete,
-partial or failed. Finish a truncated read through its missing range or cursor.
+partial or failed. Read permitted partial sources through ordered ranges or
+cursors within their limits; never attempt an oversized read or rely on
+retrieving text after truncation.
 Retry a failed range once only if the error is plausibly transient. Stop on no
 progress or repeated failure; explicit user read limits take precedence.
 Complete permitted recovery before rendering rather than assigning that read
@@ -122,7 +124,7 @@ exactly the fenced artifact with no surrounding text, or the specified path,
 hash and reading instruction for complete-file delivery. Leave no placeholders,
 secrets, invented facts or tool details used only to prepare the snapshot.
 
-Handoff owns the snapshot.
+Handoff owns the snapshot; preserve active sibling state in it.
 
 This Skill works independently. Other Scoville Skills are optional. Use an
 available, active sibling only for its applicable concern; do not install,
@@ -136,11 +138,12 @@ Family owners, in suite order:
 - `scoville-handoff`: active-work transfer.
 - `scoville-project-context-cleanup`: requested project-rule and index wording, information quality and structure.
 
-Preserve active sibling state in the snapshot.
-
-Reuse an already verified Python 3.11+ interpreter. Otherwise check `py -3`
+Reuse an already verified interpreter meeting this Skill's Python 3.11+
+requirement. Otherwise check `py -3`
 on Windows or `python3` elsewhere; try `python` if needed. Choose it locally,
-without asking the user. Use that executable for the `python` examples.
+without asking the user. Verify its version before the first helper operation.
+Use that executable wherever examples say `python` or `<verified-python>`,
+including Python commands after `--run --`.
 Report a missing runtime only when no suitable installed interpreter is found.
 
 ## Runtime helpers
@@ -148,20 +151,29 @@ Report a missing runtime only when no suitable installed interpreter is found.
 Use the bundled helpers for their operations. Read their invocation instructions,
 not their source, unless diagnosing a failure.
 
-Before reading Skill references or other large inputs, apply any declared or
-explicitly selected output limit. With Python, use
-`<verified-python> -X utf8 "<skill-directory>/scripts/check_text_size.py" --file "<file>" --max-output-tokens <limit> --part 1`.
-Follow each `next=M` label with `--part M`; read every unchanged UTF-8 part
-through `last`, where end equals total. Measure the complete rendered output, including labels;
-combine files or parts only when that combined output fits. Otherwise use
-separate, individually checked outer tool calls; a script joining reads
-returns one combined output. With no applicable limit, read
-complete UTF-8 directly; do not invent a budget.
-Without Python, first read only the check_text_size reference below. Use
+Before a potentially large read, use the verified Python interpreter and the
+bundled reader:
+`<verified-python> -X utf8 "<skill-directory>/scripts/check_text_size.py" --file "<document>" --max-output-tokens <limit> --part 1`.
+The program is `scripts/check_text_size.py`; the document is only the `--file`
+value. Start only named `.py` files as Python program files. SKILL.md, references
+and assignments are documents, never programs.
+
+Use the smallest declared or explicitly selected command and outer output limit.
+The reader validates the complete UTF-8 file and budgets its labels too.
+Follow `part=N bytes=start:end/total next=M` with `--part M` through `last`,
+where end equals total. Read every unchanged part in order before dependent
+work. Keep the same budget throughout; if it changes, restart at part 1.
+Use separate outer calls unless their complete combined output, including
+labels and metadata, has been measured and fits. Multiple reads or `text()`
+calls in one outer call share its budget. A reader error leaves the read
+incomplete, even if the budget cannot fit its diagnostic. Do not alter or copy
+the input, truncate it or recover omitted text after an oversized read.
+Without an applicable limit, read complete UTF-8 directly; invent no budget.
+Without suitable Python 3.11+, first read only the check_text_size reference below. Use
 a native UTF-8 reader and ordered unchanged parts, measuring each complete
 output including labels before display against `floor(limit * 4 / 5)` bytes.
 With no limit, read it completely. Without a safe reader, stop dependent work.
-Only when Python is unavailable, load the matching optional reference below.
+Only when suitable Python 3.11+ is unavailable, load the matching optional reference below.
 Missing scripts, missing dependencies or helper errors stop the operation;
 they never enable the manual route. Do not load these references otherwise.
 

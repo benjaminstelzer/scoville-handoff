@@ -1,5 +1,10 @@
 # Changelog
 
+## v2.1.3 - 2026-10-08
+
+- Read complete transfer inputs with an explicit document reader and keep command status separate from output completeness.
+- Make snapshot ownership and the required handoff facts easier to follow without duplicating instructions.
+
 ## v2.1.2 - 2026-10-08
 
 - Read complete UTF-8 input in bounded parts. Capture command output before display and keep the manual route available without Python.
