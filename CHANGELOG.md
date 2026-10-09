@@ -1,5 +1,9 @@
 # Changelog
 
+## v2.1.7 - 2026-10-09
+
+- Redact secrets in every part of the handoff, including warnings and quotations. Make the required sections and resume sequence explicit without changing task scope.
+
 ## v2.1.6 - 2026-10-08
 
 - Create usable snapshots after the permitted recovery sequence, preserving unread ranges and gaps. Missing required facts still block dependent receiver actions.

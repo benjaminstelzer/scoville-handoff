@@ -78,10 +78,10 @@ user need not name it again. If no task location is established, include
 location. Include temporary workspace or host state only when established as
 task state.
 
-Replace every secret value with `[redacted]` before composing any response,
-including warnings, quotations and redaction instructions. For each established
-secret-bearing variable in scope, retain its name with `[redacted]` as the value;
-never omit its name merely because the value is secret.
+Output secret-bearing facts only in redacted form: `NAME=[redacted]`.
+Keep each established variable name. Redact every secret occurrence in quotes,
+warnings and replacement instructions too; never show the original value
+when explaining its removal.
 
 For a tight output limit, remove repetition and unrelated history first, then
 shorten explanations. Preserve authority, ownership, hazards, evidence limits
@@ -93,13 +93,12 @@ entire file before continuing.
 
 ## Compose and check the prompt
 
-Fill the continuation template, keeping its four H2 sections, the meaning of
-every Receiver Instruction and three Resume Steps. Keep the template's
-Receiver Instructions intact apart from translation and secret redaction;
-they are required instructions, not optional State labels. Use the user's requested
-output language, otherwise the conversation language. Translate headings,
-labels and Receiver Instructions consistently; preserve technical identifiers,
-literal markers such as `unknown`, and exact quotations except secret values.
+Keep the template's four H2 sections: Receiver Instructions, Objective, State
+and Resume Steps, with all three Resume Steps. Keep Receiver Instructions
+intact except for translation and secret redaction. Use the requested language,
+otherwise the conversation language; translate headings, labels and instructions
+consistently. Preserve technical identifiers, literal markers such as `unknown`
+and exact quotations except secret values.
 Use one outer Markdown fence with at least four backticks and more backticks
 than any run inside the prompt; match its opening and closing length, including
 when saving the artifact to a file.
@@ -155,6 +154,10 @@ Use that executable wherever examples say `python` or `<verified-python>`,
 including Python commands after `--run --`.
 Report a missing runtime only when no suitable installed interpreter is found.
 
+For direct helper calls in PowerShell, quote the interpreter path and prefix it
+with `&`. Run generated commands unchanged in the current tool shell; do not
+replace their process or argument handling with a direct call.
+
 ## Runtime helpers
 
 Use the bundled helpers for their operations. Read their invocation instructions,
@@ -163,26 +166,41 @@ not their source, unless diagnosing a failure.
 Without an applicable limit, read complete UTF-8 directly; invent no budget.
 With an applicable limit:
 
-1. Use the smallest declared or explicitly selected limit for the read and
-   enclosing output. Read separately unless the complete combined output,
+1. Use the smallest declared or explicitly selected limit of the command and
+   every enclosing tool output. Read separately unless the complete combined output,
    including labels and metadata, is measured and fits; combined reads share
    that budget.
 2. If the file may exceed that limit, use the verified Python interpreter and
    bundled reader:
    `<verified-python> -X utf8 "<skill-directory>/scripts/check_text_size.py" --file "<document>" --max-output-tokens <limit> --part 1`.
    It validates the complete UTF-8 file and budgets labels too.
+   The program is `scripts/check_text_size.py`; the document is its `--file`
+   argument. Copy the whole command: change only `--file` for another document
+   or `--part` to continue. Keep program, launcher and quoting unchanged.
+   Only named `.py` files may be Python program files; SKILL.md, references and
+   assignments are documents.
 3. For multipart output, follow `part=N bytes=start:end/total next=M` with
    `--part M` through `last`,
    where end equals total. Read every unchanged part in order before dependent
-   work. Keep the budget unchanged; otherwise restart at part 1.
+   work. Use one limit for the whole sequence. If an applicable limit changes,
+   restart at part 1 with the new smallest limit; never raise a binding limit
+   to keep the old sequence.
+
+Reader parts are already bounded. Execute the supplied reader command unchanged;
+do not wrap it in `--run`, add `--publish-full`, or save its output.
 
 A reader error leaves the read incomplete, even if its diagnostic cannot fit.
+Correct a visible cause and restart at part 1. Do not repeat an unchanged failed
+call or raise a binding limit. Otherwise report the unread document and stop
+dependent work.
 Do not alter or copy the input, truncate it or recover omitted text after an
 oversized read.
 
-The reader program is `scripts/check_text_size.py`; pass its document only as
-`--file`. Only named `.py` files may be Python program files. SKILL.md, references
-and assignments are documents, never programs.
+To check a supplied expected SHA-256, use the same checker with
+`--file "<artifact>" --sha256 --max-output-tokens <limit>` and compare its
+`sha256` with the supplied value. A mismatch or error stops dependent work.
+Then read the same unchanged file from `--part 1` through `last` with the same
+limit. Hash verification is not reading; ordinary sources need no extra hash check.
 Without suitable Python 3.11+, first read only the check_text_size reference below. Use
 a native UTF-8 reader and ordered unchanged parts, measuring each complete
 output including labels before display against `floor(limit * 4 / 5)` bytes.
