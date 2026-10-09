@@ -1,5 +1,9 @@
 # Changelog
 
+## v2.1.10 - 2026-10-09
+
+- Clarify which path runs the reader and which document it reads, including source files from another Skill.
+
 ## v2.1.9 - 2026-10-09
 
 - Keep the verified reader and launcher unchanged between document parts or Skills. Reset to part 1 when opening a different document.
