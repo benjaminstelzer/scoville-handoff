@@ -1,5 +1,9 @@
 # Changelog
 
+## v2.1.8 - 2026-10-09
+
+- Use a complete reader command when continuing document reads, and an existing directory with a file filter when searching. Prefer direct shell commands for simple file inventories.
+
 ## v2.1.7 - 2026-10-09
 
 - Redact secrets in every part of the handoff, including warnings and quotations. Make the required sections and resume sequence explicit without changing task scope.
