@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased - 2026-10-12
+
+- Return complete command output directly when it fits; save only oversized
+  captures. Verify supplied artifacts once and compare saved native Finals
+  directly, avoiding repeated hash checks for unchanged text.
+
 ## Unreleased - 2026-10-11
 
 - Read required files completely with an agent-chosen method. Remove the document-reading helper and multipart protocol; keep output capture and result delivery separate.

@@ -88,7 +88,7 @@ shorten explanations. Preserve authority, ownership, hazards, evidence limits
 and the safe first step. An explicit lossless request preserves every in-scope
 non-secret fact. If required content still cannot fit, publish the complete
 unchanged fenced artifact through the shared complete-file route. Return its
-absolute path, SHA-256 and an instruction to verify the hash and read the
+absolute path, SHA-256 and an instruction to verify that artifact once and read the
 entire file before continuing.
 
 ## Compose and check the prompt
