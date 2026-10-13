@@ -88,8 +88,7 @@ shorten explanations. Preserve authority, ownership, hazards, evidence limits
 and the safe first step. An explicit lossless request preserves every in-scope
 non-secret fact. If required content still cannot fit, publish the complete
 unchanged fenced artifact through the shared complete-file route. Return its
-absolute path, SHA-256 and an instruction to verify that artifact once and read the
-entire file before continuing.
+absolute path and an instruction to read the entire file before continuing.
 
 ## Compose and check the prompt
 
@@ -130,7 +129,7 @@ a step.
 2. Correct omissions and contradictions; remove placeholders, secrets, invented
    facts and tool details used only to prepare the snapshot.
 3. Return exactly the fenced artifact without surrounding text, or the specified
-   path, hash and complete reading instruction for file delivery.
+   path and complete reading instruction for file delivery.
 
 Handoff owns the snapshot; preserve active sibling state in it.
 
