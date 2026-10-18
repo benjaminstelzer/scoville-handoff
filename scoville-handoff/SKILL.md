@@ -52,7 +52,8 @@ Retain each source's exact path and read state:
 ## Preserve continuation facts
 
 Read the [shared writing rules](references/writing.md) when composing the
-continuation prompt. They govern wording, not permission to read more task
+continuation prompt or assessing a disputed factual or technical conclusion.
+They grant no permission to read more task
 sources. Select the relevant continuation facts below.
 
 Capture the goal, deliverable, acceptance, scope and authority, canonical
