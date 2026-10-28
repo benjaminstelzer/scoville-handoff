@@ -1,5 +1,14 @@
 # Changelog
 
+## Unreleased - 2026-10-28
+
+- Recover only missing source ranges within the permitted limits, then preserve
+  remaining gaps in a usable snapshot. A flow diagram shows when recovery ends.
+- Check that a fresh receiver can identify the next permitted action and its
+  completion criterion without asking for established facts left out of the prompt.
+- Align recovery cases with complete-file delivery when required content cannot
+  fit, keeping authority, blockers and receiver safeguards intact.
+
 ## Unreleased - 2026-10-20
 
 - Keep required text complete when choosing how to read it. File size and metadata remain optional, and completed reads need no verification reread.

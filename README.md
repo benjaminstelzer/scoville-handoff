@@ -23,9 +23,8 @@ diluted between conversations. The next agent already has enough imagination.
 - **A useful next action.** The prompt tells the next session where to resume
   and how to recognize completion.
 
-A targeted GPT-6 Luna High test turned a preference into a requirement. Check
-that distinction in a generated handoff. Later testing has not disproved the
-observation.
+Keep preferences distinct from binding requirements. The receiving session
+still needs the exact permissions and acceptance criteria for its next action.
 
 See the [full instructions](https://github.com/benjaminstelzer/scoville-handoff/blob/main/scoville-handoff/SKILL.md).
 
@@ -41,7 +40,12 @@ session needs to continue.
 
 ## Compatibility
 
-Developed for Codex and Claude Code with read access to the task's relevant sources. Fable, Astra, SOL or Opus (5.0+) are recommended. Luna 6 with High reasoning passed the selected comprehension and functional checks in Codex. Other routes and hosts remain unverified.
+Developed for Codex and Claude Code with read access to the task's
+relevant sources.
+In targeted candidate-path tests in Codex with gpt-6.1-sol / low, an unchanged
+generated continuation let a fresh receiver complete the remaining fixture task
+and preserve unrelated dirty text, while read-recovery, tight-limit file delivery,
+secret-redaction cases, other hosts and installed discovery remain unverified.
 
 ## Install
 
@@ -99,6 +103,7 @@ Create a compact handoff for another agent. Preserve the objective, decisions, c
 - [UI](https://github.com/benjaminstelzer/scoville-ui) covers UI implementation, information structure, accessibility and rendered checks, with an optional WordPress adapter.
 - [Handoff](https://github.com/benjaminstelzer/scoville-handoff) passes active work to another agent or session.
 - [Project Context Cleanup](https://github.com/benjaminstelzer/scoville-suite) keeps requested project rules and index text concise without losing required context.
+- [Skillwriter](https://github.com/benjaminstelzer/scoville-skillwriter) writes, simplifies and reviews Skills and reusable agent prompts.
 
 ## License
 

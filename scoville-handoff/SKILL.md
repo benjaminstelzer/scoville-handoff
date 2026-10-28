@@ -38,16 +38,25 @@ Retain each source's exact path and read state:
 | Read state | Action |
 | --- | --- |
 | Complete | Use the established facts. |
-| Partial | Read permitted ordered ranges or cursors within their limits. Never attempt an oversized read or recover text after truncation. |
+| Partial | Read only missing content through permitted ordered ranges or cursors. Do not repeat a complete read or the same oversized request. User read limits prevail. |
 | Failed range, plausibly transient | Retry that range once; explicit user read limits prevail. |
 | No progress, repeated failure or read limit | Stop recovery. Preserve usable facts, recovery, gaps and unread ranges beside the source. A partial source is not wholly unavailable. |
 
-1. Finish the permitted recovery sequence before composing, including stopping
-   when the table requires it; do not defer these attempts to the receiver.
-2. Compose the snapshot from usable facts, preserving each source's read state,
-   recovery, gaps and unread ranges. Never label a partial source complete.
-3. Conflicting source revisions and material unread ranges block receiver
-   verification and actions that depend on them, not snapshot creation.
+```mermaid
+flowchart TD
+  read["Read permitted sources"] --> enough{"Required content complete?"}
+  enough -->|yes| compose["Compose factual snapshot"]
+  enough -->|no| allowed{"Recovery permitted and progressing?"}
+  allowed -->|yes| recover["Read missing range within retry limit"]
+  recover --> enough
+  allowed -->|no| gaps["Record usable facts, recovery, gaps and unread ranges"]
+  gaps --> compose
+```
+
+Finish permitted recovery before composing; do not defer it to the receiver.
+Never label a partial source complete. Conflicting source revisions and material
+unread ranges block receiver verification and actions that depend on them,
+not snapshot creation.
 
 ## Preserve continuation facts
 
@@ -127,6 +136,9 @@ a step.
 1. Compare the full prompt with captured facts and sources: required facts,
    exact identifiers, attribution, Objective fields, Receiver Instructions and
    first safe step. For lossless requests, check every in-scope non-secret fact.
+   Check that a fresh receiver can identify the next permitted action and its
+   completion criterion from the prompt and explicitly accessible inputs,
+   without asking for omitted established facts.
 2. Correct omissions and contradictions; remove placeholders, secrets, invented
    facts and tool details used only to prepare the snapshot.
 3. Return exactly the fenced artifact without surrounding text, or the specified
@@ -145,6 +157,7 @@ Family owners, in suite order:
 - `scoville-ui`: framework UI implementation and acceptance, including supported WordPress admin surfaces.
 - `scoville-handoff`: active-work transfer.
 - `scoville-project-context-cleanup`: requested project-rule and index wording, information quality and structure.
+- `scoville-skillwriter`: Skill and reusable prompt wording for frontier models.
 
 Reuse an already verified interpreter meeting this Skill's Python 3.11+
 requirement. Otherwise check `py -3`
