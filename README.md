@@ -9,8 +9,10 @@ diluted between conversations. The next agent already has enough imagination.
 
 ## How it works
 
-- Read the conversation and the task sources already named or established.
-- Capture the facts needed to resume, including permissions and unfinished work.
+- Use established conversation facts and read missing required passages from
+  the task sources already named or established. Preserve any remaining gaps.
+- Capture the facts needed to resume, including permissions, unfinished work
+  and the original evidence for interrupted or one-time effects.
 - Produce one prompt in the requested language, otherwise the conversation
   language. The receiving agent checks current state before acting.
 
@@ -19,7 +21,8 @@ diluted between conversations. The next agent already has enough imagination.
 - **Explicit transfer.** A handoff starts when you request one. Preparing it is
   read-only and does not advance the task.
 - **Faithful context.** Decisions, permissions, ownership and blockers survive
-  the transfer. Unknown results stay unknown, and secrets stay out.
+  the transfer. Existing approval is preserved within its scope. Unknown
+  results stay unknown, and secrets stay out, including quoted secrets.
 - **A useful next action.** The prompt tells the next session where to resume
   and how to recognize completion.
 
@@ -31,6 +34,9 @@ See the [full instructions](https://github.com/benjaminstelzer/scoville-handoff/
 ## What it costs
 
 - Preparing the prompt takes tokens and time once, so the next session has less context to reconstruct.
+- The declared base reading routes were about 40% shorter in the current source
+  comparison. Conditional references were measured separately. This is a static
+  text comparison, not measured token use or transfer speed.
 
 ## How it was developed
 
@@ -38,16 +44,26 @@ Real transfers exposed lost blockers, decisions and ownership of unfinished
 changes. Those cases shaped a compact template that preserves what the next
 session needs to continue.
 
+In current Codex tests with `gpt-6.1-sol / low`, an actual producer preserved
+the original template, receiver instructions and outer fence, transferred the
+task's authority and original capture evidence, and redacted the test secret.
+A fresh receiver used that unchanged prompt and ran the remaining verifier
+exactly once. The original effect was preserved. An incorrect assumption about
+the original output's format was corrected before the verifier ran.
+
+The receiver also used installed host rules. These cases demonstrate the
+task, authority and evidence transfer, not isolated loading of candidate Code
+rules. They do not establish no-progress recovery, tight-limit file delivery,
+installed discovery or current behavior in Claude Code or other hosts.
+
 ## Compatibility
 
 Developed for Codex and Claude Code with read access to the task's
-relevant sources.
-In targeted candidate-path tests in Codex with gpt-6.1-sol / low, an unchanged
-generated continuation let a fresh receiver complete the remaining fixture task
-and preserve unrelated user text. A bounded partial-source read was completed
-from its missing ranges before transfer. No-progress recovery, tight-limit file
-delivery, secret-redaction cases, other hosts and installed discovery remain
-unverified.
+relevant sources. Python 3.11+ supports the bundled size checker; a manual
+fallback is available only when suitable Python is unavailable, not after a
+helper failure.
+Read-only Git inspection is optional. Handoff requires no network access or
+subagents.
 
 ## Install
 

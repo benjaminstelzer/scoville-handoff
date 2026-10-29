@@ -6,116 +6,101 @@ compatibility: "Agent Skills host that can read established task sources. Option
 
 # Scoville Handoff
 
-Give the receiver accurately labeled context to continue safely from one
-copy-ready snapshot. An explicit transfer applies even when work is empty,
-completed or not started. Without a transfer request, perform the requested
-task without a handoff. If future reuse is requested but transfer intent is
-unclear, ask one question before reading sources or producing a handoff.
-When asked to explain or assess a hypothetical handoff, answer that question.
-Produce the continuation artifact only for a requested transfer of an actual
-task.
+Create one copy-ready snapshot for an explicitly requested transfer of an
+actual task, including empty, completed or not-started work. Questions about
+Handoff or a hypothetical transfer call for an answer or assessment. If future
+reuse is requested but transfer intent is unclear, ask one question before
+reading sources or producing a handoff. Ordinary summaries, low context and
+session endings do not activate this workflow.
 
 ## Read within the transfer scope
 
-Any already required and authorized pre-transfer update belongs to its active
-owner, such as Plan for Step status, and must finish before Handoff starts.
-The transfer request grants no additional editing authority.
+Finish already required and authorized pre-transfer updates through their
+active owner, such as Plan for Step status, before Handoff starts. Handoff
+grants no additional task authority.
 
-Use task facts already established in the conversation. Additional reads are
-limited to sources explicitly named or already established as task sources in
-the conversation, optional read-only version-control inspection, and the
-[continuation template](assets/continuation-prompt.md). Do not search for more
-sources. Throughout this workflow, do not advance the task: no edits, builds,
-tests, probes, dummy or other task commands, unrelated reads, stat or list
-operations, or external effects.
-Missing facts do not authorize additional actions. Only for preparing and
-delivering this handoff, interpreter discovery, temporary artifact writes,
-size checks and complete-file publication are permitted. This exception
-grants no task edits, tests or other task commands.
+Use established conversation facts and the
+[continuation template](assets/continuation-prompt.md). Additional task reads
+are limited to sources explicitly named or already established in the
+conversation and optional read-only version-control inspection. Identify the
+missing required facts, then read only the passages needed to establish them,
+each completely. Do not search for new sources or restore unrelated history.
 
-Retain each source's exact path and read state:
+During Handoff, do not advance the task: no task edits, builds, tests, probes,
+dummy or other task commands, unrelated reads, stat/list operations or external
+effects. Only handoff preparation and delivery permit interpreter discovery,
+temporary artifact writes, size checks and complete-file publication.
+
+Retain each source's exact path, read scope and completeness:
 
 | Read state | Action |
 | --- | --- |
-| Complete | Use the established facts. |
-| Partial | Read only missing content through permitted ordered ranges or cursors. Do not repeat a complete read or the same oversized request. User read limits prevail. |
-| Failed range, plausibly transient | Retry that range once; explicit user read limits prevail. |
-| No progress, repeated failure or read limit | Stop recovery. Preserve usable facts, recovery, gaps and unread ranges beside the source. A partial source is not wholly unavailable. |
+| Required passages complete | Use their established facts without rereading. |
+| Required content missing | Recover only missing content through permitted ordered ranges or cursors; do not repeat an oversized request. |
+| Plausibly transient failed range | Retry that range once within user read limits. |
+| No progress, repeated failure or user read limit | Stop recovery; record usable facts, attempted recovery, gaps and unread ranges beside the source. |
 
-```mermaid
-flowchart TD
-  read["Read permitted sources"] --> enough{"Required content complete?"}
-  enough -->|yes| compose["Compose factual snapshot"]
-  enough -->|no| allowed{"Recovery permitted and progressing?"}
-  allowed -->|yes| recover["Read missing range within retry limit"]
-  recover --> enough
-  allowed -->|no| gaps["Record usable facts, recovery, gaps and unread ranges"]
-  gaps --> compose
-```
-
-Finish permitted recovery before composing; do not defer it to the receiver.
-Never label a partial source complete. Conflicting source revisions and material
-unread ranges block receiver verification and actions that depend on them,
-not snapshot creation.
+Finish permitted recovery before composing. Label partial sources and passage
+reads accurately. Conflicting revisions and material gaps block dependent
+receiver verification and actions, not snapshot creation.
 
 ## Preserve continuation facts
 
-Read the [shared writing rules](references/writing.md) when composing the
-continuation prompt or assessing a disputed factual or technical conclusion.
-They grant no permission to read more task
-sources. Select the relevant continuation facts below.
+Before requesting or reading machine reports, logs or structured state, or
+composing the continuation prompt, apply the
+[shared writing rules](references/writing.md): use retained matching rules or
+load them if needed, with their conditional data, shell and delivery routes.
+They grant no additional task reads or actions.
 
-Capture the goal, deliverable, acceptance, scope and authority, canonical
-owners, user-owned changes, accepted decisions, active work and running handles,
-observed evidence and its limits, blockers, hazards and next safe action.
-Preserve exact IDs, paths, commits, URLs, commands, errors, quoted decisions,
-assumptions, unknowns and time-sensitive details where needed for continuation.
-Transfer known material facts, not just pointers or instructions to reread them.
-The handoff request itself is not a task decision. Keep preferences and proposals
-distinct from requirements and accepted decisions.
+Capture the template's Objective and required continuation facts: authority and
+ownership, user-owned changes, accepted decisions, active sibling state,
+observed results and evidence limits, blockers, hazards and next safe action.
+Preserve exact identities, paths, commits, URLs, commands, errors and decisive
+quotations, with assumptions, unknowns and time-sensitive details. Transfer known
+material facts directly, with their source; distinguish preferences and
+proposals from requirements and accepted decisions. A transfer request changes
+neither task decisions nor previously granted continuation rights.
 
-Use `unknown` for missing information and `none known` when no instances are
-known, such as no known blockers. Neither proves absence. Set `Status:
-not_started` only when the conversation or an explicitly named or already
-established task source establishes it; otherwise a missing status stays
-`unknown`.
+For interrupted or one-time effects, retain running handles, original producer
+identity, complete stdout/stderr capture locations and completeness, and final
+exit status or the exact missing evidence. Recovery must use the original
+execution and evidence rather than repeat the effect.
 
-For file-based work, use the task working directory established by the
-conversation or an explicitly named or already established canonical project
-source. A task repository already verified during the work is sufficient; the
-user need not name it again. If no task location is established, include
-`Working directory: unknown`. Runtime CWD alone does not establish the task
-location. Include temporary workspace or host state only when established as
-task state.
+Use `unknown` for missing information and `none known` for no known instances;
+neither proves absence. Use `Status: not_started` only when established by the
+conversation or an allowed task source.
 
-Output secret-bearing facts only in redacted form: `NAME=[redacted]`.
-Keep each established variable name. Redact every secret occurrence in quotes,
-warnings and replacement instructions too; never show the original value
-when explaining its removal.
+For file-based work, name the task working directory established by the
+conversation or an allowed canonical project source, including a task repository
+already verified during the work. Otherwise use `Working directory: unknown`.
+Include temporary workspace or host state only when established as task state.
 
-For a tight output limit, remove repetition and unrelated history first, then
-shorten explanations. Preserve authority, ownership, hazards, evidence limits
-and the safe first step. An explicit lossless request preserves every in-scope
-non-secret fact. If required content still cannot fit, publish the complete
-unchanged fenced artifact through the shared complete-file route. Return its
-absolute path and an instruction to read the entire file before continuing.
+Redact every secret occurrence, including quotations, warnings and replacement
+instructions. Preserve established variable names as `NAME=[redacted]`.
+
+An explicit lossless request preserves every in-scope non-secret fact. Under a
+tight output limit, remove repetition and unrelated history before shortening
+explanations; preserve required facts and safeguards. If necessary content still
+cannot fit, use the shared complete-file route for the complete unchanged fenced
+artifact, returning its absolute path and an instruction to read it entirely
+before continuing.
 
 ## Compose and check the prompt
 
-Keep the template's four H2 sections: Receiver Instructions, Objective, State
-and Resume Steps, with all three Resume Steps. Keep Receiver Instructions
-intact except for translation and secret redaction. Use the requested language,
-otherwise the conversation language; translate headings, labels and instructions
-consistently. Preserve technical identifiers, literal markers such as `unknown`
-and exact quotations except secret values.
+Keep the template's four H2 sections (Receiver Instructions, Objective, State
+and Resume Steps), every Objective field, Status and all three Resume Steps.
+Other State labels are optional; omit empty or inapplicable categories while
+preserving required continuation facts and relevant unknowns. Name each source
+once beside its facts, identifying conversation facts as such; repeat facts only
+when needed for a hazard or first step.
+
+Keep Receiver Instructions intact except for translation and secret redaction.
+Use the requested language, otherwise the conversation language; translate
+headings, labels and instructions consistently. Preserve technical identifiers,
+literal markers such as `unknown` and exact quotations except secret values.
 Use one outer Markdown fence with at least four backticks and more backticks
 than any run inside the prompt; match its opening and closing length, including
 when saving the artifact to a file.
-Include every Objective field. Under State, always preserve Status and the
-required continuation facts, including relevant unknowns. Other template labels
-are optional; omit empty or inapplicable categories. Name each source once beside
-its facts and identify conversation facts as such. Repeat a fact only when a
-hazard or first step needs it.
 
 Choose Resume Step 1 in this priority order:
 
@@ -126,29 +111,24 @@ Choose Resume Step 1 in this priority order:
 | In-flight work | Recover its state. |
 | Otherwise | Take the next safe action. |
 
-Make the remaining steps concrete and end with an
-observable completion criterion. Active or incompletely accepted work names its
-decisive next check. For completed work with current evidence, the three steps
-cover only checking current state, reconciling contradictions and confirming
-no material mismatch. Do not invent more work or repeat a current check to fill
-a step.
+Make the remaining steps concrete and end with an observable completion
+criterion. Active or incompletely accepted work names its decisive next check.
+For completed work with current evidence, use the three steps only to check
+current state, reconcile contradictions and confirm no material mismatch;
+invent no work or repeated check to fill a step.
 
-1. Compare the full prompt with captured facts and sources: required facts,
-   exact identifiers, attribution, Objective fields, Receiver Instructions and
-   first safe step. For lossless requests, check every in-scope non-secret fact.
-   Check that a fresh receiver can identify the next permitted action and its
-   completion criterion from the prompt and explicitly accessible inputs,
-   without asking for omitted established facts.
-2. Correct omissions and contradictions; remove placeholders, secrets, invented
-   facts and tool details used only to prepare the snapshot.
-3. Return exactly the fenced artifact without surrounding text, or the specified
-   path and complete reading instruction for file delivery.
+Check the full prompt against the captured facts, sources and template. A fresh
+receiver must have the required facts, authority, next permitted action and
+completion criterion without hidden history. For lossless requests, account for
+every in-scope non-secret fact. Correct omissions and contradictions; remove
+placeholders, secrets, invented facts and preparation-only tool details.
+Return exactly the fenced artifact without surrounding text, or the specified
+path and complete reading instruction for file delivery.
 
-Handoff owns the snapshot; preserve active sibling state in it.
-
-This Skill works independently. Other Scoville Skills are optional. Use an
-available, active sibling only for its applicable concern; do not install,
-simulate or require an absent sibling. Honor explicit user exclusions.
+This Skill works independently. Other Scoville Skills are optional; use an
+available, active sibling for its applicable concern. Do not install, simulate
+or require an absent sibling.
+Explicit activation requirements and user exclusions apply in either layout.
 
 Family owners, in suite order:
 
@@ -158,31 +138,3 @@ Family owners, in suite order:
 - `scoville-handoff`: active-work transfer.
 - `scoville-project-context-cleanup`: requested project-rule and index wording, information quality and structure.
 - `scoville-skillwriter`: Skill and reusable prompt wording for frontier models.
-
-Reuse an already verified interpreter meeting this Skill's Python 3.11+
-requirement. Otherwise check `py -3`
-on Windows or `python3` elsewhere; try `python` if needed. Choose it locally,
-without asking the user. Verify its version before the first helper operation.
-Use that executable wherever examples say `python` or `<verified-python>`,
-including Python commands after `--run --`.
-Report a missing runtime only when no suitable installed interpreter is found.
-
-Before processing machine reports or logs, use the [shared writing rules](references/writing.md).
-If their complete text is not loaded, read it in a separate call before reading
-the data. Reuse retained rules under their existing reload conditions.
-Before helper calls, follow [shell command rules](references/shell-commands.md).
-
-## Runtime helpers
-
-Use the bundled helpers for their operations. Read their invocation instructions,
-not their source, unless diagnosing a failure.
-
-| Condition | Required route |
-| --- | --- |
-| Suitable Python 3.11+ is available | Use the bundled helper; do not load manual references. |
-| No suitable Python 3.11+ | Read only the matching optional reference below. |
-| Missing script, missing dependency or helper error | Stop the affected operation; this never enables the manual route. |
-
-| Helper | Optional no-Python reference |
-| --- | --- |
-| `scripts/check_text_size.py` | [check_text_size](references/fallbacks/check_text_size-fallback.md) |

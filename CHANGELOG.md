@@ -1,5 +1,19 @@
 # Changelog
 
+## Unreleased - 2026-10-29
+
+- Consolidate continuation facts and bounded source recovery. Read missing
+  required passages and retain remaining gaps without restoring unrelated
+  history. Keep the original template, schema and outer fence.
+- Load machine-data, command, interpreter and delivery rules for the operations
+  that need them. Preserve existing authority and the original capture evidence
+  for interrupted or one-time effects.
+- Record actual producer and fresh-receiver tests with gpt-6.1-sol / low:
+  secret redaction, unchanged continuation transfer and one permitted verifier
+  execution without repeating the original effect. The receiver also composed
+  installed host rules; current Claude behavior and installed discovery remain
+  untested.
+
 ## Unreleased - 2026-10-28
 
 - Recover only missing source ranges within the permitted limits, then preserve
