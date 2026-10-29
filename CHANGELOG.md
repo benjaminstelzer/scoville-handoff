@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased - 2026-10-29 - Complete capture boundaries
+
+- Preserve original failure bytes with explicit capture errors, noninteractive EOF and optional bounded command execution.
+- Distinguish required source contracts from machine reports without weakening complete continuation text delivery.
+
 ## Unreleased - 2026-10-29 - Follow-up corrections
 
 - Load writing rules for disputed conclusions and resolve output/data fallback references at their owners.
