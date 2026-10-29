@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased - 2026-10-29 - Follow-up corrections
+
+- Load writing rules for disputed conclusions and resolve output/data fallback references at their owners.
+
 ## Unreleased - 2026-10-29
 
 - Consolidate continuation facts and bounded source recovery. Read missing

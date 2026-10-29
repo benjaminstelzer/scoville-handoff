@@ -1,7 +1,7 @@
 ---
 name: scoville-handoff
 description: Create a factual continuation prompt for an explicitly requested transfer to another agent or session, including Scoville Handoff or "handoff to a new session". Ordinary Plan maintenance belongs to Plan. Do not activate for ordinary summaries, shortening, low context, wrapping up, or ending a session.
-compatibility: "Agent Skills host that can read established task sources. Optional read-only Git inspection. No network or subagents. Developed for Codex and Claude Code; other hosts untested. Python 3.11+ for the bundled text-size checker; manual fallback only without suitable Python. Helper errors do not enable fallback."
+compatibility: "Agent Skills host that can read established task sources. Optional read-only Git inspection. No network or subagents. Developed for Codex and Claude Code. Python 3.11+ for the bundled text-size checker; manual fallback only without suitable Python. Helper errors do not enable fallback."
 ---
 
 # Scoville Handoff
@@ -47,7 +47,8 @@ receiver verification and actions, not snapshot creation.
 ## Preserve continuation facts
 
 Before requesting or reading machine reports, logs or structured state, or
-composing the continuation prompt, apply the
+composing the continuation prompt or answering a disputed factual or technical
+conclusion, apply the
 [shared writing rules](references/writing.md): use retained matching rules or
 load them if needed, with their conditional data, shell and delivery routes.
 They grant no additional task reads or actions.
