@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased - 2026-10-30 - Shared criteria and focused helper fixes
+
+- Retain complete saved output when atomic publication fails and clarify capture failure versus child status.
+- Describe the general development cycle and relevant handoff lessons.
+
 ## Unreleased - 2026-10-29 - Complete capture boundaries
 
 - Preserve original failure bytes with explicit capture errors, noninteractive EOF and optional bounded command execution.
