@@ -1,46 +1,46 @@
 # Changelog
 
-## Unreleased - 2026-11-12 - Concrete instructions and release command
+## 2026-11-12 - Concrete instructions and release command
 
 - State each rule as a trigger, an action and a result the agent can check itself, and remove statements that reach the same reader twice.
 - Reword the shared writing, machine-data, shell and output-delivery rules the same way.
 
-## Unreleased - 2026-11-11 - Size check for placed components and tested models
+## 2026-11-11 - Size check for placed components and tested models
 
 - Name the tested models and the minimum reasoning effort in the README.
 
-## Unreleased - 2026-11-10 - Leaner instructions and Plan validator fixes
+## 2026-11-10 - Leaner instructions and Plan validator fixes
 
 - Link the shared writing, machine-data, shell, output-delivery and Python references directly from SKILL.md, each with its reading condition, instead of chained read-first rules.
 - Shorten the shared rules: drop permission disclaimers that have no recorded incident and state scope and reason for the stop rules that remain.
 - Reduce output delivery to when the checker is needed, its three calls and how to read a result. Every capture failure now names its next step in the helper's `instruction` field.
 - State why creating a handoff must not move the task.
 
-## Unreleased - 2026-10-30 - Source reading and UTF-8 diagnostics
+## 2026-10-30 - Source reading and UTF-8 diagnostics
 
 - Clarify direct source reading and producer-owned instruction-design loading while preserving report evaluation.
 - Explain retained bytes, child status and unresolved text interpretation after invalid UTF-8.
 - Remove redundant layout wording without changing activation or sibling requirements.
 
-## Unreleased - 2026-10-30 - Capture and diagnostic follow-up
+## 2026-10-30 - Capture and diagnostic follow-up
 
 - Support complete command capture without a numeric token limit and retain primary failure diagnostics.
 
-## Unreleased - 2026-10-30 - Shared criteria and focused helper fixes
+## 2026-10-30 - Shared criteria and focused helper fixes
 
 - Retain complete saved output when atomic publication fails and clarify capture failure versus child status.
 - Describe the general development cycle and relevant handoff lessons.
 
-## Unreleased - 2026-10-29 - Complete capture boundaries
+## 2026-10-29 - Complete capture boundaries
 
 - Preserve original failure bytes with explicit capture errors, noninteractive EOF and optional bounded command execution.
 - Distinguish required source contracts from machine reports without weakening complete continuation text delivery.
 
-## Unreleased - 2026-10-29 - Follow-up corrections
+## 2026-10-29 - Follow-up corrections
 
 - Load writing rules for disputed conclusions and resolve output/data fallback references at their owners.
 
-## Unreleased - 2026-10-29
+## 2026-10-29
 
 - Consolidate continuation facts and bounded source recovery. Read missing
   required passages and retain remaining gaps without restoring unrelated
@@ -54,7 +54,7 @@
   installed host rules; current Claude behavior and installed discovery remain
   untested.
 
-## Unreleased - 2026-10-28
+## 2026-10-28
 
 - Recover only missing source ranges within the permitted limits, then preserve
   remaining gaps in a usable snapshot. A flow diagram shows when recovery ends.
@@ -63,24 +63,24 @@
 - Align recovery cases with complete-file delivery when required content cannot
   fit, keeping authority, blockers and receiver safeguards intact.
 
-## Unreleased - 2026-10-20
+## 2026-10-20
 
 - Keep required text complete when choosing how to read it. File size and metadata remain optional, and completed reads need no verification reread.
 
-## Unreleased - 2026-10-19
+## 2026-10-19
 
 - Write reports as compact lists of checked scope, results and relevant gaps. Group equivalent outcomes and refer to existing evidence instead of retelling the run.
 - Apply one shared evidence rule in user and agent exchanges: defend supported conclusions, correct demonstrated errors, and respect user decisions without treating them as factual proof.
 
-## Unreleased - 2026-10-18
+## 2026-10-18
 
 - Reuse known results and request only the scope the next decision needs. Narrow direct tool requests before display when code preprocessing is unavailable.
 
-## Unreleased - 2026-10-15
+## 2026-10-15
 
 - Process complete reports in code, including saved captures and failures. Load the rules before data, preserve required original text, and keep parser errors from echoing stored state. Evaluate producer output before display, retain one-time results, and distinguish saved captures from missing output.
 
-## Unreleased - 2026-10-14
+## 2026-10-14
 
 - Compare nested report data in code and display only decisive results and necessary diagnostics, including structured state stored in text fields.
 
@@ -89,7 +89,7 @@
 - Process machine reports through code before displaying results. Avoid redundant shared-rule reads and keep check reports focused on decisive evidence.
 - Parse machine reports completely and display checked facts and all in-scope deviations. Reuse fully read shared rules across Skills without hiding required inputs.
 
-## Unreleased - 2026-10-13
+## 2026-10-13
 
 - Load detailed command capture and full-file delivery only when needed. Keep complete output, failure diagnostics and role permissions.
 
@@ -100,17 +100,17 @@
 - Simplify shared writing rules; command-specific size details now live in the
   shell-command rules.
 
-## Unreleased - 2026-10-12
+## 2026-10-12
 
 - Return complete command output directly when it fits; save only oversized
   captures. Verify supplied artifacts once and compare saved native Finals
   directly, avoiding repeated hash checks for unchanged text.
 
-## Unreleased - 2026-10-11
+## 2026-10-11
 
 - Read required files completely with an agent-chosen method. Remove the document-reading helper and multipart protocol; keep output capture and result delivery separate.
 
-## Unreleased - 2026-10-10
+## 2026-10-10
 
 - Load command capture and large-result delivery only when needed; preserve complete outputs and role permissions.
 - Keep agent messages and internal commentary compact. Reference readable source text instead of copying it; preserve required facts and exact controls.
