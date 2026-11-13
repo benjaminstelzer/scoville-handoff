@@ -7,32 +7,32 @@ compatibility: "Agent Skills host that can read established task sources. Option
 # Scoville Handoff
 
 Create one copy-ready snapshot for an explicitly requested transfer of an
-actual task, including empty, completed or not-started work. A question about
-Handoff or a hypothetical transfer gets an answer or assessment instead. If
-future reuse is requested but the transfer intent is unclear, ask one question
-before reading sources or producing a handoff. Ordinary summaries, low context
-and session endings are not transfers.
+actual task, including empty, completed or not-started work. Answer a question
+about Handoff or a hypothetical transfer; produce no handoff. If future reuse
+is requested but the transfer intent is unclear, ask one question before
+reading sources or producing a handoff.
 
 ## Read within the transfer scope
 
-Updates that are already required and authorized before the transfer, such as
-Plan's Step status, are finished through their owner before Handoff starts.
+Before Handoff starts, finish updates that were already required and
+authorized before the transfer request, such as Plan's Step status, through
+their owner (for a Plan record: Plan).
 
 Use the facts established in the conversation and the
-[continuation template](assets/continuation-prompt.md). Further reads are
-limited to sources named or already established in the conversation and to
-optional read-only version-control inspection. Identify the required facts
-that are missing, then read only the passages that establish them, each
-completely. A handoff transfers what is established; it does not research new
-sources or restore unrelated history.
+[continuation template](assets/continuation-prompt.md). Beyond these, read
+only sources named or already established in the conversation; read-only
+version-control inspection is optional. Determine which required facts are
+missing, then read only the passages that establish them, each completely. A handoff transfers what is
+established: do not research new sources or restore unrelated history.
 
-Creating the handoff must not move the task, because the receiver treats the
-snapshot as the state at transfer: no task edits, builds, tests, probes or
-other task commands, no unrelated reads or stat/list operations, no external
-effects. Only preparing and delivering the handoff itself may use interpreter
-discovery, temporary artifact writes, size checks and file publication.
+Creating the handoff must not change the task, because the receiver treats the
+snapshot as the state at transfer. Make no task edits. Run no builds, tests,
+probes or other task commands. Do no unrelated reads or stat/list operations.
+Cause no external effects. Only preparing and delivering the handoff may use
+interpreter discovery, temporary artifact writes, size checks and file
+publication.
 
-Keep each source's exact path, read scope and completeness:
+Record each source's exact path, read scope and completeness:
 
 | Read state | Action |
 | --- | --- |
@@ -41,26 +41,26 @@ Keep each source's exact path, read scope and completeness:
 | Plausibly transient failed range | Retry that range once within the user's read limits. |
 | No progress, repeated failure or the user's read limit | End the recovery and record beside the source the usable facts, the attempted recovery, the gaps and the unread ranges. |
 
-Finish permitted recovery before composing, and label partial sources and
-passage reads as such. Conflicting revisions and material gaps block the
-receiver's dependent verification and actions, not the snapshot; name them.
+Finish permitted recovery before composing. Label partial sources and passage
+reads as such. Name conflicting revisions and material gaps: they block the
+receiver's checks and actions that depend on them, not the snapshot.
 
 ## Preserve continuation facts
 
 Capture the template's Objective and the required continuation facts:
-authority and ownership, user-owned changes, accepted decisions, active sibling
-state, observed results and evidence limits, blockers, hazards and the next
-safe action. Preserve exact identities, paths, commits, URLs, commands, errors
-and decisive quotations, with assumptions, unknowns and time-sensitive details.
-Transfer known material facts directly with their source, and keep preferences
-and proposals apart from requirements and accepted decisions. A transfer
-request leaves task decisions and previously granted continuation rights as
-they are.
+authorization and ownership, user-owned changes, accepted decisions, the state
+of other active Scoville Skills, observed results and what they do not show,
+blockers, hazards and the next safe action. Preserve exact identities, paths,
+commits, URLs, commands, errors and decisive quotations, with assumptions,
+unknowns and time-sensitive details. State each known material fact directly
+with its source. Keep preferences and proposals apart from requirements and
+accepted decisions. A transfer request changes no task decision and no
+previously granted permission to continue.
 
-For interrupted or one-time effects, keep running handles, the original
-producer's identity, the locations and completeness of the stdout and stderr
+For interrupted or one-time effects, record running handles, what originally
+produced the effect, the locations and completeness of the stdout and stderr
 captures, and the final exit status or the exact missing evidence. Recovery
-uses the original execution and its evidence; the effect is not repeated.
+uses that original run and its evidence; the effect is not repeated.
 
 Use `unknown` for missing information and `none known` for no known instances;
 neither proves absence. Use `Status: not_started` only when the conversation or
@@ -76,7 +76,7 @@ Redact every occurrence of a secret, including in quotations, warnings and
 replacement instructions, and keep established variable names as
 `NAME=[redacted]`.
 
-An explicit lossless request preserves every in-scope non-secret fact. Under a
+On an explicit lossless request, keep every in-scope non-secret fact. Under a
 tight output limit, remove repetition and unrelated history before shortening
 explanations, and keep required facts and safeguards. If necessary content
 still cannot fit, publish the complete unchanged fenced artifact as a file
@@ -110,25 +110,23 @@ Choose Resume Step 1 in this priority order:
 | Otherwise | Take the next safe action. |
 
 Make the remaining steps concrete and end with an observable completion
-criterion. Active or incompletely accepted work names its decisive next check.
-For completed work with current evidence, the three steps check the current
-state, reconcile contradictions and confirm that no material mismatch exists;
-they are not filled with invented work or repeated checks.
+criterion. For active or incompletely accepted work, name its decisive next
+check. For completed work with current evidence, the three steps check the
+current state, reconcile contradictions and confirm that no material mismatch
+exists; do not fill them with invented work or repeated checks.
 
-Check the full prompt against the captured facts, sources and template. A
-fresh receiver must have the required facts, authority, next permitted action
-and completion criterion without hidden history. For a lossless request,
-account for every in-scope non-secret fact. Correct omissions and
-contradictions, and remove placeholders, secrets, invented facts and
-preparation-only tool details. Return exactly the fenced artifact without
+Check the full prompt against the captured facts, sources and template. The
+prompt alone must give a fresh receiver the required facts, authorization,
+next permitted action and completion criterion. Correct omissions and
+contradictions. Remove placeholders, secrets, invented facts and tool details
+used only to prepare the handoff. Return exactly the fenced artifact without
 surrounding text, or the path and complete reading instruction for file
 delivery.
 
 ## Shared references
 
-Read one when its condition holds. A complete copy already in context from
-this build, including one embedded in your assignment, counts as read; read it
-again when it is incomplete or uncertain or a reload is requested.
+Read one when its condition holds. A complete copy from this build already in
+context counts as read, including one embedded in your assignment. Read it again when it is incomplete, when you are not certain it is the complete copy from this build, or when a reload is requested.
 
 - [Writing](references/writing.md): a plan, decision, instruction, review, handoff or report; a disputed conclusion.
 - [Machine data](references/machine-data.md): a test report, log or structured state as a result.
@@ -137,11 +135,11 @@ again when it is incomplete or uncertain or a reload is requested.
 - [Python discovery](references/python-discovery.md): a Python command or bundled helper, no interpreter verified this session.
 - [Instruction design](references/instruction-design.md): a reusable instruction, Skill rule or prompt template.
 
-This Skill works on its own. Use another Scoville Skill for its concern when
-it is installed and active; an absent one is neither installed, imitated nor
-required.
-A Skill that needs explicit activation stays out until it is activated, and
-one the user excluded stays out.
+This Skill works on its own. When another Scoville Skill is installed and
+active, use it for the concern it owns. Do not install, imitate or require an
+absent one.
+Do not use a Skill that needs explicit activation before it is activated, or
+one the user excluded.
 
 Family owners, in suite order:
 
