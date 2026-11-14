@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-11-14 - Goodhart corrections
+
+- One to three Resume Steps instead of always three; a category with nothing known is left out instead of filled with "none known".
+- Leave out history the receiver does not need, also without a size limit.
+- Shared rules: a final report after a small change no longer loads the writing reference, a test runner's console summary is not machine data, and a complete copy of a reference in context counts as read.
+
 ## 2026-11-12 - Concrete instructions and release command
 
 - State each rule as a trigger, an action and a result the agent can check itself, and remove statements that reach the same reader twice.

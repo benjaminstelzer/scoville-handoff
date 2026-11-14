@@ -32,7 +32,7 @@ Cause no external effects. Only preparing and delivering the handoff may use
 interpreter discovery, temporary artifact writes, size checks and file
 publication.
 
-Record each source's exact path, read scope and completeness:
+Name each source by its exact path, and handle reads as follows:
 
 | Read state | Action |
 | --- | --- |
@@ -47,9 +47,9 @@ receiver's checks and actions that depend on them, not the snapshot.
 
 ## Preserve continuation facts
 
-Capture the template's Objective and the required continuation facts:
-authorization and ownership, user-owned changes, accepted decisions, the state
-of other active Scoville Skills, observed results and what they do not show,
+Capture the template's Objective and the known continuation facts:
+authorization and ownership, user-owned changes, accepted decisions, the
+active Work Item and Step, observed results and what they do not show,
 blockers, hazards and the next safe action. Preserve exact identities, paths,
 commits, URLs, commands, errors and decisive quotations, with assumptions,
 unknowns and time-sensitive details. State each known material fact directly
@@ -62,9 +62,10 @@ produced the effect, the locations and completeness of the stdout and stderr
 captures, and the final exit status or the exact missing evidence. Recovery
 uses that original run and its evidence; the effect is not repeated.
 
-Use `unknown` for missing information and `none known` for no known instances;
-neither proves absence. Use `Status: not_started` only when the conversation or
-an allowed task source establishes it.
+Write `unknown` only where the receiver's next action depends on a fact you
+could not establish; neither `unknown` nor an omitted category proves
+absence. Use `Status: not_started` only when the conversation or an allowed
+task source establishes it.
 
 For file-based work, name the task working directory established by the
 conversation or an allowed canonical project source, including a task
@@ -76,21 +77,20 @@ Redact every occurrence of a secret, including in quotations, warnings and
 replacement instructions, and keep established variable names as
 `NAME=[redacted]`.
 
-On an explicit lossless request, keep every in-scope non-secret fact. Under a
-tight output limit, remove repetition and unrelated history before shortening
-explanations, and keep required facts and safeguards. If necessary content
-still cannot fit, publish the complete unchanged fenced artifact as a file
-and return its absolute path with the instruction to read it entirely before
-continuing.
+Leave out repetition and history the receiver does not need to continue. On
+an explicit lossless request, keep every in-scope non-secret fact. Under a
+tight output limit, shorten explanations next, keeping required facts and
+safeguards. If necessary content still cannot fit, publish the complete
+unchanged fenced artifact as a file and return its absolute path with the
+instruction to read it entirely before continuing.
 
 ## Compose and check the prompt
 
 Keep the template's four H2 sections (Receiver Instructions, Objective, State
-and Resume Steps), every Objective field, Status and all three Resume Steps.
-Other State labels are optional: omit empty or inapplicable categories while
-keeping required continuation facts and relevant unknowns. Name each source
-once beside its facts and mark conversation facts as such; repeat a fact only
-where a hazard or the first step needs it.
+and Resume Steps), every Objective field, Status and one to three Resume
+Steps. Other State labels are optional: omit a label with nothing known. Name
+each source once beside its facts and mark conversation facts as such; repeat
+a fact only where a hazard or the first step needs it.
 
 Keep Receiver Instructions intact apart from translation and secret redaction.
 Use the requested language, otherwise the conversation language, and translate
@@ -109,11 +109,10 @@ Choose Resume Step 1 in this priority order:
 | In-flight work | Recover its state. |
 | Otherwise | Take the next safe action. |
 
-Make the remaining steps concrete and end with an observable completion
-criterion. For active or incompletely accepted work, name its decisive next
-check. For completed work with current evidence, the three steps check the
-current state, reconcile contradictions and confirm that no material mismatch
-exists; do not fill them with invented work or repeated checks.
+Add a step only for a further concrete action, up to three in all; the last
+step ends with an observable completion criterion. For active or
+incompletely accepted work, name its decisive next check. For completed work
+with current evidence, one step that rechecks the result is enough.
 
 Check the full prompt against the captured facts, sources and template. The
 prompt alone must give a fresh receiver the required facts, authorization,
@@ -125,13 +124,14 @@ delivery.
 
 ## Shared references
 
-Read one when its condition holds. A complete copy from this build already in
-context counts as read, including one embedded in your assignment. Read it again when it is incomplete, when you are not certain it is the complete copy from this build, or when a reload is requested.
+Read one when its condition holds. A complete copy already in context counts
+as read, including one embedded in your assignment. Read it again only when
+that copy is incomplete or a reload is requested.
 
-- [Writing](references/writing.md): a plan, decision, instruction, review, handoff or report; a disputed conclusion.
-- [Machine data](references/machine-data.md): a test report, log or structured state as a result.
+- [Writing](references/writing.md): a plan, decision, instruction, review, handoff or a report the user asked for as the result; a disputed conclusion.
+- [Machine data](references/machine-data.md): a structured report, log file or saved state you must evaluate, such as JUnit XML or coverage data; a test runner's console summary is not one.
 - [Shell commands](references/shell-commands.md): composed text or scripts passed through a shell; quoting, PowerShell encoding, exact bytes or several exit statuses matter.
-- [Output delivery](references/output-delivery.md): before a command whose output may exceed the display limit or whose effect or result cannot be repeated; text that must fit a known limit; delivery as a file.
+- [Output delivery](references/output-delivery.md): before a command whose output may exceed the display limit; text that must fit a known limit; delivery as a file.
 - [Python discovery](references/python-discovery.md): a Python command or bundled helper, no interpreter verified this session.
 - [Instruction design](references/instruction-design.md): a reusable instruction, Skill rule or prompt template.
 
