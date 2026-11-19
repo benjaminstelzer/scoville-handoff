@@ -1,5 +1,9 @@
 # Changelog
 
+## 2026-11-19 - Writing the continuation prompt
+
+The shared writing reference names the target models and clarifies when an instruction needs a written record.
+
 ## 2026-11-18 - Shorter final check and delivery
 
 - Each rule is stated once. The final check asks whether the work does what the Skill requires instead of listing the rules again. Not tested with models yet.
