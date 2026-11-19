@@ -1,5 +1,19 @@
 # Changelog
 
+## 2026-11-18 - Shorter final check and delivery
+
+- Each rule is stated once. The final check asks whether the work does what the Skill requires instead of listing the rules again. Not tested with models yet.
+
+## 2026-11-15 - Rules that contradicted each other
+
+- Record updates that were authorized before the transfer request are made through their owner with the checks that owner requires.
+- Shared rules: a reply uses the language of the request, while a record or file you edit keeps the language it is written in. Files saved with `--publish-full` are delivered output, so cleanup leaves them in place. A rule that holds only until something happens states that end in the rule.
+
+## 2026-11-14 - Continue unfinished user work
+
+- Preserve unrelated uncommitted work while allowing the receiver to correct or replace the user's unfinished implementation as the task requires.
+- Keep commit, publication, destructive-action and external-effect permissions separate. Creating the handoff still changes no task files.
+
 ## 2026-11-14 - Goodhart corrections
 
 - One to three Resume Steps instead of always three; a category with nothing known is left out instead of filled with "none known".
