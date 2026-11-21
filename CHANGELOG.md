@@ -1,5 +1,9 @@
 # Changelog
 
+## 2026-11-21 - The size checker works in a Windows sandbox
+
+The size checker gives a complete file its final name by rename on Windows. Codex's Windows sandbox refuses hard links in the project and in a temporary folder a helper creates, so saving a complete output as a file failed there. On Windows rename refuses an existing name, as the hard link does elsewhere. Checked inside that sandbox: the file is saved, and a second file under the same name is refused.
+
 ## 2026-11-21 - A report on other work comes before the handoff
 
 When the same request also asks for work, the reply reports that work first and then gives the checked fenced prompt; a size check covers the complete reply, and a published file holds the prompt alone. Before, "return exactly the fenced artifact" made one model leave the work report out.
