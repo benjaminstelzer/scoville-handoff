@@ -1,7 +1,7 @@
 ---
 name: scoville-handoff
 description: Create a factual continuation prompt for an explicitly requested transfer to another agent or session, including Scoville Handoff or "handoff to a new session". Ordinary Plan maintenance belongs to Plan. Do not activate for ordinary summaries, shortening, low context, wrapping up, or ending a session.
-compatibility: "Agent Skills host that can read established task sources. Optional read-only Git inspection. No network or subagents. Developed for Codex and Claude Code. Python 3.11+ for the bundled text-size checker; manual fallback only without suitable Python. Helper errors do not enable fallback."
+compatibility: "Agent Skills host that can read established task sources. Optional read-only Git inspection. No network or subagents. Developed for Codex and Claude Code. Python 3.11+ and the bundled text-size checker are required for output capture, size checks and delivery as a file."
 ---
 
 # Scoville Handoff
@@ -18,7 +18,7 @@ absent one.
 Do not use a Skill that needs explicit activation before it is activated, or
 one the user excluded.
 
-## Read within the transfer scope
+## Read within the transfer scope without changing the task
 
 Before taking the snapshot, finish updates that were already required and
 authorized before the transfer request through their applicable owner, such
@@ -29,21 +29,21 @@ Use the facts established in the conversation and the
 [continuation template](assets/continuation-prompt.md). Beyond these, read
 only sources named or already established in the conversation; read-only
 version-control inspection is optional. Determine which required facts are
-missing, then read only the passages that establish them, each completely. A handoff transfers what is
+missing, then read only the passages that establish them. A handoff transfers what is
 established: do not research new sources or restore unrelated history.
 
 Creating the handoff must not change the task, because the receiver treats the
-snapshot as the state at transfer. Make no task edits. Run no builds, tests,
+snapshot as the state at transfer. A transfer request changes no task decision
+and no previously granted permission to continue. Make no task edits. Run no builds, tests,
 probes or other task commands. Do no unrelated reads or stat/list operations.
 Cause no external effects. Only preparing and delivering the handoff may use
 interpreter discovery, temporary artifact writes, size checks and file
 publication.
 
-Name each source by its exact path, and handle reads as follows:
+Handle reads as follows:
 
 | Read state | Action |
 | --- | --- |
-| Required passages complete | Use their established facts without rereading. |
 | Required content missing | Recover only the missing content through permitted ordered ranges or cursors; do not resend an oversized request, it will fail again. |
 | Plausibly transient failed range | Retry that range once within the user's read limits. |
 | No progress, repeated failure or the user's read limit | End the recovery and record beside the source the usable facts, the gaps and the unread ranges. |
@@ -58,12 +58,10 @@ Capture the template's Objective and the known continuation facts:
 authorization and ownership, the user's uncommitted work and whether it is
 the work to continue, accepted decisions, the
 active Work Item and Step, observed results and what they do not show,
-blockers, hazards and the next safe action. Preserve exact identities, paths,
-commits, URLs, commands, errors and decisive quotations, with assumptions,
-unknowns and time-sensitive details. State each known material fact directly
-with its source. Keep preferences and proposals apart from requirements and
-accepted decisions. A transfer request changes no task decision and no
-previously granted permission to continue.
+blockers, hazards and the next safe action. Preserve exact paths, commits,
+URLs, commands, errors and decisive quotations, with assumptions, unknowns
+and time-sensitive details. State each known material fact directly. Keep
+preferences and proposals apart from requirements and accepted decisions.
 For a stopped or transferred Scoville Workflow, include its requirement for a
 new explicit Workflow invocation before the receiver resumes execution.
 
@@ -90,7 +88,8 @@ only when established as task state. Use `Status: not_started` only when
 established by an allowed source. Write `unknown` for unestablished required
 fields and for optional fields the next action depends on. Omit other unknown
 optional labels. Omission and `unknown` carry no evidence of absence. Name each
-source once beside its facts and mark conversation facts as such. Repeat a fact
+source once, by its exact path, beside its facts and mark conversation facts
+as such. Repeat a fact
 where a hazard or the first step needs it.
 
 Keep Receiver Instructions intact apart from translation and secret redaction.
@@ -120,9 +119,10 @@ tool details used only to prepare the handoff.
 
 ## Deliver the checked prompt
 
-For a known output limit, size-check the complete fenced prompt under
-[Output delivery](references/output-delivery.md) and follow its result;
-otherwise return exactly the fenced artifact.
+After a report on any other work the same request asked for, return the
+checked fenced prompt. For a known output limit, size-check that complete
+reply under [Output delivery](references/output-delivery.md) and follow its
+result; a published file holds the fenced prompt alone.
 
 ## Shared references
 

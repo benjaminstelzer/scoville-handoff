@@ -1,5 +1,23 @@
 # Changelog
 
+## 2026-11-21 - A report on other work comes before the handoff
+
+When the same request also asks for work, the reply reports that work first and then gives the checked fenced prompt; a size check covers the complete reply, and a published file holds the prompt alone. Before, "return exactly the fenced artifact" made one model leave the work report out.
+
+This was the first model test of the Skill: four handoffs with two models, half-finished work with a failing test, finished work with a decision left to me, work inside a planning profile, and a constraint with a rejected approach and an unverified assumption. All eight handoffs followed the template and matched the workspace. With the new wording both models reported their work before the prompt, in one run each. The size check of the complete reply is not tested with a model.
+
+## 2026-11-20 - Python is required
+
+The bundled text-size checker now always needs Python 3.11+. The manual no-Python route and its reference file are gone: without a suitable Python the size check stops and says so, as it already did after a helper error. I removed the manual route because a host without Python is rare, an agent following a prose copy of a helper makes mistakes the program does not, and every copy was one more wording of the same rules to keep in step.
+
+## 2026-11-20 - Clearer structure
+
+The section on reading is named for what it also guarantees: a transfer changes no task decision.
+
+## 2026-11-19 - One wording per rule
+
+Sentences that repeated the shared writing reference or another line of the Skill are removed.
+
 ## 2026-11-19 - Writing the continuation prompt
 
 The shared writing reference names the target models and clarifies when an instruction needs a written record.
