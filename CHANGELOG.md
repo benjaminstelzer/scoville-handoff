@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-11-23 - The Workflow sentence ships only with Workflow
+
+The sentence on handing off a stopped Scoville Workflow now ships only in the Codex suite, the one edition that contains Workflow.
+
+The size checker names the process ID when a capture was interrupted and its cleanup is unconfirmed, as it did after a timeout. The delivery reference now says what that ID is for: resolve the state of that process before a rerun.
+
 ## 2026-11-21 - The size checker works in a Windows sandbox
 
 The size checker gives a complete file its final name by rename on Windows. Codex's Windows sandbox refuses hard links in the project and in a temporary folder a helper creates, so saving a complete output as a file failed there. On Windows rename refuses an existing name, as the hard link does elsewhere. Checked inside that sandbox: the file is saved, and a second file under the same name is refused.

@@ -62,8 +62,6 @@ blockers, hazards and the next safe action. Preserve exact paths, commits,
 URLs, commands, errors and decisive quotations, with assumptions, unknowns
 and time-sensitive details. State each known material fact directly. Keep
 preferences and proposals apart from requirements and accepted decisions.
-For a stopped or transferred Scoville Workflow, include its requirement for a
-new explicit Workflow invocation before the receiver resumes execution.
 
 Record applicable stops with their scope and the known handles of running
 processes and agents. For interrupted or one-time effects, record what
