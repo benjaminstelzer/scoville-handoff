@@ -1,5 +1,9 @@
 # Changelog
 
+## 2026-11-23 - A shorter README
+
+I rewrote the README. It now says what the Skill does, how to call it, what it needs and where it stops, and leaves out how the suite is built. The Skill itself is unchanged. The requirements name `gpt-6.2-sol` instead of `gpt-6.1-sol`.
+
 ## 2026-11-23 - The Workflow sentence ships only with Workflow
 
 The sentence on handing off a stopped Scoville Workflow now ships only in the Codex suite, the one edition that contains Workflow.
